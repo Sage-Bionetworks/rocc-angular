@@ -4,6 +4,7 @@
     },
     "scripts": {
         "generate:client": "openapi-generator-cli generate -g typescript-angular -o rocc-client -i $npm_config_specification",
-        "generate:client:edge": "openapi-generator-cli generate -g typescript-angular -o rocc-client -i https://sage-bionetworks.github.io/rocc-schemas/edge/openapi.json"
+        "generate:client:edge": "openapi-generator-cli generate -g typescript-angular -o rocc-client -i https://sage-bionetworks.github.io/rocc-schemas/edge/openapi.json",
+        "generate:client:latest": "openapi-generator-cli generate -g typescript-angular -o rocc-client -i https://sage-bionetworks.github.io/rocc-schemas/latest/openapi.json"
     }
 }
