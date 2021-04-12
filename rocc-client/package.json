@@ -1,5 +1,5 @@
 {
-    "name": "@sage-bionetworks/rocc-angular",
+    "name": "@sage-bionetworks/rocc-angular-client",
     "version": "1.0.0",
     "description": "ROCC OpenAPI client library for Angular",
     "author": "ROCC Team",
