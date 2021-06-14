@@ -1,0 +1,54 @@
+name: Update ROCC client library
+
+on:
+  schedule:
+    - cron: '0 10 * * *' # everyday at 10am
+env:
+  node_version: 14.x
+
+jobs:
+  check-and-update:
+    name: Check and update ROCC client library
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get latest release version
+        uses: octokit/request-action@v2.x
+        id: get_latest_release
+        with:
+          route: GET /repos/:repository/releases/latest
+          repository: Sage-Bionetworks/rocc-schemas
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Use Node.js ${{ env.node_version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.node_version }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Update client library for TypeScript-Angular
+        run: |
+          # Remove server folder so that everything is recreated
+          rm -rf rocc-client
+          npm run generate:client:latest
+
+          cur_ver=`grep nlpsandbox/date-annotator-stub docker-compose.yml | sed 's/    image: nlpsandbox\/date-annotator-stub://'`
+          new_ver=${{ fromJson(steps.get_latest_release.outputs.data).tag_name }}
+
+          # Escape dot characters so sed interprets them as literal dots
+          cur_ver="$(echo $cur_ver | sed 's/\./\\./g')"
+
+          for f in docker-compose.yml README.md; do
+            sed -i "s/${cur_ver}/${new_ver}/g" "$f"
+          done
+
+      - name: Send pull request to update to new version
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: Update to ${{ fromJson(steps.get_latest_release.outputs.data).tag_name }}
+          title: Update to ${{ fromJson(steps.get_latest_release.outputs.data).tag_name }}
+          delete-branch: true
