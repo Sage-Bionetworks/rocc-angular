@@ -22,6 +22,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get latest ROCC schemas version
+        run: |
+          new_version=${{ fromJson(steps.get_latest_release.outputs.data).tag_name }}
+          echo "new_version=$(echo $new_version)" >> $GITHUB_ENV
+
       - name: Use Node.js ${{ env.node_version }}
         uses: actions/setup-node@v1
         with:
@@ -32,23 +37,23 @@ jobs:
 
       - name: Update client library for TypeScript-Angular
         run: |
+          current_version=$(cat .rocc-version)
+          new_version=${{ env.new_version }}
+
           # Remove server folder so that everything is recreated
           rm -rf rocc-client
-          npm run generate:client:latest
-
-          cur_ver=`grep nlpsandbox/date-annotator-stub docker-compose.yml | sed 's/    image: nlpsandbox\/date-annotator-stub://'`
-          new_ver=${{ fromJson(steps.get_latest_release.outputs.data).tag_name }}
+          npm run generate:client:version --oas_version=${new_version}
 
           # Escape dot characters so sed interprets them as literal dots
-          cur_ver="$(echo $cur_ver | sed 's/\./\\./g')"
+          current_version="$(echo $current_version | sed 's/\./\\./g')"
 
-          for f in docker-compose.yml README.md; do
-            sed -i "s/${cur_ver}/${new_ver}/g" "$f"
+          for f in .rocc-version README.md; do
+            sed -i "s/${current_version}/${new_version}/g" "$f"
           done
 
       - name: Send pull request to update to new version
         uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: Update to ${{ fromJson(steps.get_latest_release.outputs.data).tag_name }}
-          title: Update to ${{ fromJson(steps.get_latest_release.outputs.data).tag_name }}
+          commit-message: Update to ROCC schemas ${{ env.new_version }}
+          title: Update to ROCC schemas ${{ env.new_version }}
           delete-branch: true
