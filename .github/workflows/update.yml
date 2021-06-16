@@ -2,7 +2,8 @@ name: Update ROCC client library
 
 on:
   schedule:
-    - cron: '0 10 * * *' # everyday at 10am
+    # - cron: '0 10 * * *'  # everyday at 10am
+    - cron: '*/30 * * * *'  # every 30 minutes
 env:
   node_version: 14.x
 
