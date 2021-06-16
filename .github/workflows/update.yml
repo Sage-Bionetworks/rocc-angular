@@ -9,7 +9,6 @@ env:
 
 jobs:
   check-and-update:
-    name: Check and update ROCC client library
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
