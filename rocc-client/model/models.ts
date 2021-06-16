@@ -2,7 +2,6 @@ export * from './challenge';
 export * from './challengeCreateRequest';
 export * from './challengeCreateResponse';
 export * from './challengeFilter';
-export * from './challengeResults';
 export * from './challengeStatus';
 export * from './grant';
 export * from './grantCreateRequest';

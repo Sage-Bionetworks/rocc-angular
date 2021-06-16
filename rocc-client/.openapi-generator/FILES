@@ -18,7 +18,6 @@ model/challenge.ts
 model/challengeCreateRequest.ts
 model/challengeCreateResponse.ts
 model/challengeFilter.ts
-model/challengeResults.ts
 model/challengeStatus.ts
 model/error.ts
 model/grant.ts
