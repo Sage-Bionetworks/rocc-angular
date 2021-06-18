@@ -15,8 +15,8 @@ available.
 
 ## Specification
 
-- ROCC schemas version: 0.1.5
-- ROCC client library version: 0.1.0
+- ROCC schemas version: 0.1.6
+- ROCC client library version: 0.2.0
 
 
 ## Requirements
