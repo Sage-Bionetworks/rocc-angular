@@ -32,7 +32,7 @@ This repository uses [semantic versioning] to track the releases of this
 project. This repository uses "non-moving" GitHub tags, that is, a tag will
 always point to the same git commit once it has been created.
 
-### npm package
+### npm package tags
 
 The artifact published by the [CI/CD workflow] of this GitHub repository is an
 npm package pushed to the npm package registry [npmjs.org]. This table lists the
