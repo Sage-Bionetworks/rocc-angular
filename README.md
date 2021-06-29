@@ -24,6 +24,25 @@ available.
 - [Node] >=14
 
 
+## Versioning
+
+### GitHub release tags
+
+This repository uses [semantic versioning] to track the releases of this
+project. This repository uses "non-moving" GitHub tags, that is, a tag will
+always point to the same git commit once it has been created.
+
+### npm package
+
+The artifact published by the [CI/CD workflow] of this GitHub repository is an
+npm package pushed to the npm package registry [npmjs.org]. This table lists the
+package tags pushed to this registry.
+
+| Tag name                    | Moving | Description
+|-----------------------------|--------|------------
+| `<major>.<minor>.<patch>`   | No     | Stable release.
+
+
 ## Contributing
 
 Thinking about contributing to this project? Get started by reading our
@@ -41,6 +60,7 @@ Thinking about contributing to this project? Get started by reading our
 [openapi-generator]: https://github.com/OpenAPITools/openapi-generator
 [ROCC schemas]: https://github.com/Sage-Bionetworks/rocc-schemas
 [Node]: https://nodejs.org/en/
+[npmjs.org]: https://www.npmjs.com/
 [semantic versioning]: https://semver.org/
 [contribution guidelines]: .github/CONTRIBUTING.md
 [Apache License 2.0]: https://github.com/Sage-Bionetworks/rocc-client-angular/blob/main/LICENSE
