@@ -49,9 +49,9 @@ jobs:
           npm run generate:client:version --oas_version=${new_version}
 
           # Restore files that are not automatically generated
-          cp rocc-client_tmp/rocc-client/ng-package.json rocc-client/.
-          cp rocc-client_tmp/package-lock.json rocc-client/.
-          cp rocc-client_tmp/package.json rocc-client/.
+          mv rocc-client_tmp/ng-package.json rocc-client/.
+          mv rocc-client_tmp/package-lock.json rocc-client/.
+          mv rocc-client_tmp/package.json rocc-client/.
 
           # Remove bkp folder
           rm -fr rocc-client_tmp
