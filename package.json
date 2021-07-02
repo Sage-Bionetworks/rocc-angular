@@ -1,6 +1,6 @@
 {
     "devDependencies": {
-        "@openapitools/openapi-generator-cli": "2.3.4"
+        "@openapitools/openapi-generator-cli": "2.3.5"
     },
     "scripts": {
         "generate:client": "openapi-generator-cli generate -g typescript-angular -o rocc-client -i $npm_config_specification",
