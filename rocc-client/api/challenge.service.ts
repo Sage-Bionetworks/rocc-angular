@@ -1,6 +1,6 @@
 /**
  * Registry of Open Community Challenge API
- * The OpenAPI specification implemented by the Challenge Registries. # Introduction TBA 
+ * The OpenAPI specification implemented by the Challenge Registries. # Introduction TBA
  *
  * The version of the OpenAPI document: 0.1.7
  * Contact: thomas.schaffter@sagebionetworks.org
@@ -54,10 +54,11 @@ export class ChallengeService {
 
     private addToHttpParams(httpParams: HttpParams, value: any, key?: string): HttpParams {
         if (typeof value === "object" && value instanceof Date === false) {
-            httpParams = this.addToHttpParamsRecursive(httpParams, value);
+            httpParams = this.addToHttpParamsRecursive(httpParams, value, key);
         } else {
             httpParams = this.addToHttpParamsRecursive(httpParams, value, key);
         }
+        console.log('FINAL:httpParams', httpParams);
         return httpParams;
     }
 
@@ -65,6 +66,8 @@ export class ChallengeService {
         if (value == null) {
             return httpParams;
         }
+
+        console.log('addToHttpParamsRecursive: adding', key, value);
 
         if (typeof value === "object") {
             if (Array.isArray(value)) {
@@ -77,21 +80,23 @@ export class ChallengeService {
                    throw Error("key may not be null if value is Date");
                 }
             } else {
+                console.log('addToHttpParamsRecursive:else');
                 Object.keys(value).forEach( k => httpParams = this.addToHttpParamsRecursive(
-                    httpParams, value[k], key != null ? `${key}.${k}` : k));
+                    httpParams, value[k], key != null ? `${key}[${k}]` : k));
             }
         } else if (key != null) {
             httpParams = httpParams.append(key, value);
         } else {
             throw Error("key may not be null if value is not object or array");
         }
+        console.log('addToHttpParamsRecursive:httpParams', httpParams);
         return httpParams;
     }
 
     /**
      * Add a challenge
      * Adds a challenge
-     * @param challengeCreateRequest 
+     * @param challengeCreateRequest
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -305,6 +310,8 @@ export class ChallengeService {
           queryParameters = this.addToHttpParams(queryParameters,
             <any>filter, 'filter');
         }
+
+        console.log('queryParameters', queryParameters);
 
         let headers = this.defaultHeaders;
 
