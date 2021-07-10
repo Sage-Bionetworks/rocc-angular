@@ -24,6 +24,17 @@ available.
 - [Node] >=14
 
 
+## Usage
+
+
+## Development
+
+### Build
+
+Run `npm run build` to build the library for production. The build artifacts
+will be stored in the `dist/` directory.
+
+
 ## Versioning
 
 ### GitHub release tags
