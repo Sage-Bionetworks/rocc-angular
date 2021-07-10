@@ -1,4 +1,5 @@
 export * from './challenge';
+export * from './challengeAllOf';
 export * from './challengeCreateRequest';
 export * from './challengeCreateResponse';
 export * from './challengeFilter';

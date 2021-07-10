@@ -50,7 +50,7 @@ export class HealthCheckService {
 
     private addToHttpParams(httpParams: HttpParams, value: any, key?: string): HttpParams {
         if (typeof value === "object" && value instanceof Date === false) {
-            httpParams = this.addToHttpParamsRecursive(httpParams, value);
+            httpParams = this.addToHttpParamsRecursive(httpParams, value, key);
         } else {
             httpParams = this.addToHttpParamsRecursive(httpParams, value, key);
         }
@@ -74,7 +74,7 @@ export class HealthCheckService {
                 }
             } else {
                 Object.keys(value).forEach( k => httpParams = this.addToHttpParamsRecursive(
-                    httpParams, value[k], key != null ? `${key}.${k}` : k));
+                    httpParams, value[k], key != null ? `${key}[${k}]` : k));
             }
         } else if (key != null) {
             httpParams = httpParams.append(key, value);
@@ -110,14 +110,14 @@ export class HealthCheckService {
         }
 
 
-        let responseType: 'text' | 'json' = 'json';
+        let responseType_: 'text' | 'json' = 'json';
         if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType = 'text';
+            responseType_ = 'text';
         }
 
         return this.httpClient.get<HealthCheck>(`${this.configuration.basePath}/healthcheck`,
             {
-                responseType: <any>responseType,
+                responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
