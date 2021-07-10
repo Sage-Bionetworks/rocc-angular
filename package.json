@@ -3,9 +3,9 @@
         "@openapitools/openapi-generator-cli": "2.3.5"
     },
     "scripts": {
-        "generate:client": "openapi-generator-cli generate -g typescript-angular -o rocc-client -i $npm_config_specification",
-        "generate:client:edge": "openapi-generator-cli generate -g typescript-angular -o rocc-client -i https://sage-bionetworks.github.io/rocc-schemas/edge/openapi.json",
-        "generate:client:latest": "openapi-generator-cli generate -g typescript-angular -o rocc-client -i https://sage-bionetworks.github.io/rocc-schemas/latest/openapi.json",
-        "generate:client:version": "openapi-generator-cli generate -g typescript-angular -o rocc-client -i https://sage-bionetworks.github.io/rocc-schemas/${npm_config_oas_version}/openapi.json"
+        "generate:client": "openapi-generator-cli generate -g typescript-angular -o rocc-client -i $npm_config_specification -c rocc-client/config.yaml",
+        "generate:client:edge": "openapi-generator-cli generate -g typescript-angular -o rocc-client -i https://sage-bionetworks.github.io/rocc-schemas/edge/openapi.json -c rocc-client/config.yaml",
+        "generate:client:latest": "openapi-generator-cli generate -g typescript-angular -o rocc-client -i https://sage-bionetworks.github.io/rocc-schemas/latest/openapi.json -c rocc-client/config.yaml",
+        "generate:client:version": "openapi-generator-cli generate -g typescript-angular -o rocc-client -i https://sage-bionetworks.github.io/rocc-schemas/${npm_config_oas_version}/openapi.json -c rocc-client/config.yaml"
     }
 }
