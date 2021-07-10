@@ -1,0 +1,3 @@
+templateDir: rocc-client/templates
+additionalProperties:
+  queryParamObjectFormat: key
