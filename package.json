@@ -1,11 +1,45 @@
 {
-    "devDependencies": {
-        "@openapitools/openapi-generator-cli": "2.3.6"
-    },
-    "scripts": {
-        "generate:client": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client -i $npm_config_specification -c projects/rocc-client/config.yaml",
-        "generate:client:edge": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client -i https://sage-bionetworks.github.io/rocc-schemas/edge/openapi.json -c projects/rocc-client/config.yaml",
-        "generate:client:latest": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client -i https://sage-bionetworks.github.io/rocc-schemas/latest/openapi.json -c projects/rocc-client/config.yaml",
-        "generate:client:version": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client -i https://sage-bionetworks.github.io/rocc-schemas/${npm_config_oas_version}/openapi.json -c projects/rocc-client/config.yaml"
-    }
+  "name": "rocc-client",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "generate:client": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i $npm_config_specification -c projects/rocc-client/config.yaml",
+    "generate:client:edge": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i https://sage-bionetworks.github.io/rocc-schemas/edge/openapi.json -c projects/rocc-client/config.yaml",
+    "generate:client:latest": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i https://sage-bionetworks.github.io/rocc-schemas/latest/openapi.json -c projects/rocc-client/config.yaml",
+    "generate:client:version": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i https://sage-bionetworks.github.io/rocc-schemas/${npm_config_oas_version}/openapi.json -c projects/rocc-client/config.yaml"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~12.1.1",
+    "@angular/common": "~12.1.1",
+    "@angular/compiler": "~12.1.1",
+    "@angular/core": "~12.1.1",
+    "@angular/forms": "~12.1.1",
+    "@angular/platform-browser": "~12.1.1",
+    "@angular/platform-browser-dynamic": "~12.1.1",
+    "@angular/router": "~12.1.1",
+    "rxjs": "~6.6.0",
+    "tslib": "^2.2.0",
+    "zone.js": "~0.11.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~12.1.1",
+    "@angular/cli": "~12.1.1",
+    "@angular/compiler-cli": "~12.1.1",
+    "@types/jasmine": "~3.6.0",
+    "@types/node": "^12.11.1",
+    "jasmine-core": "3.7.1",
+    "karma": "~6.3.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.0.3",
+    "karma-jasmine": "~4.0.0",
+    "karma-jasmine-html-reporter": "1.6.0",
+    "ng-packagr": "^12.1.0",
+    "typescript": "~4.3.2",
+    "@openapitools/openapi-generator-cli": "2.3.6"
+  }
 }
