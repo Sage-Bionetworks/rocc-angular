@@ -98,7 +98,7 @@ export class {{classname}} {
         {{/isQueryParamObjectFormatJson}}
         {{^isQueryParamObjectFormatJson}}
         if (typeof value === "object" && value instanceof Date === false) {
-            httpParams = this.addToHttpParamsRecursive(httpParams, value);
+            httpParams = this.addToHttpParamsRecursive(httpParams, value, key);
         } else {
             httpParams = this.addToHttpParamsRecursive(httpParams, value, key);
         }
