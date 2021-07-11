@@ -34,6 +34,14 @@ available.
 Run `npm run build` to build the library for production. The build artifacts
 will be stored in the `dist/` directory.
 
+### Publish
+
+```console
+npm run build
+cd dist/rocc-client
+npm publish
+```
+
 
 ## Versioning
 
