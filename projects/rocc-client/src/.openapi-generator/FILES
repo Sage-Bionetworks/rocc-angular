@@ -15,7 +15,6 @@ encoder.ts
 git_push.sh
 index.ts
 model/challenge.ts
-model/challengeAllOf.ts
 model/challengeCreateRequest.ts
 model/challengeCreateResponse.ts
 model/challengeFilter.ts
