@@ -23,6 +23,7 @@ model/challengePlatformAllOf.ts
 model/challengePlatformCreateRequest.ts
 model/challengePlatformCreateResponse.ts
 model/challengeStatus.ts
+model/dateRange.ts
 model/error.ts
 model/grant.ts
 model/grantCreateRequest.ts
