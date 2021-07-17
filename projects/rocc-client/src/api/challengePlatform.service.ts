@@ -17,11 +17,10 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { Challenge } from '../model/models';
-import { ChallengeCreateRequest } from '../model/models';
-import { ChallengeCreateResponse } from '../model/models';
-import { ChallengeStatus } from '../model/models';
-import { PageOfChallenges } from '../model/models';
+import { ChallengePlatform } from '../model/models';
+import { ChallengePlatformCreateRequest } from '../model/models';
+import { ChallengePlatformCreateResponse } from '../model/models';
+import { PageOfChallengePlatforms } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -31,7 +30,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class ChallengeService {
+export class ChallengePlatformService {
 
     protected basePath = 'https://rocc.org/api/v1';
     public defaultHeaders = new HttpHeaders();
@@ -89,18 +88,28 @@ export class ChallengeService {
     }
 
     /**
-     * Add a challenge
-     * Adds a challenge
-     * @param challengeCreateRequest 
+     * Create a challenge platform
+     * Create a challenge platform with the specified ID
+     * @param challengePlatformId The ID of the challenge platform that is being created
+     * @param challengePlatformCreateRequest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createChallenge(challengeCreateRequest: ChallengeCreateRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<ChallengeCreateResponse>;
-    public createChallenge(challengeCreateRequest: ChallengeCreateRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<ChallengeCreateResponse>>;
-    public createChallenge(challengeCreateRequest: ChallengeCreateRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<ChallengeCreateResponse>>;
-    public createChallenge(challengeCreateRequest: ChallengeCreateRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (challengeCreateRequest === null || challengeCreateRequest === undefined) {
-            throw new Error('Required parameter challengeCreateRequest was null or undefined when calling createChallenge.');
+    public createChallengePlatform(challengePlatformId: string, challengePlatformCreateRequest: ChallengePlatformCreateRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<ChallengePlatformCreateResponse>;
+    public createChallengePlatform(challengePlatformId: string, challengePlatformCreateRequest: ChallengePlatformCreateRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<ChallengePlatformCreateResponse>>;
+    public createChallengePlatform(challengePlatformId: string, challengePlatformCreateRequest: ChallengePlatformCreateRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<ChallengePlatformCreateResponse>>;
+    public createChallengePlatform(challengePlatformId: string, challengePlatformCreateRequest: ChallengePlatformCreateRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (challengePlatformId === null || challengePlatformId === undefined) {
+            throw new Error('Required parameter challengePlatformId was null or undefined when calling createChallengePlatform.');
+        }
+        if (challengePlatformCreateRequest === null || challengePlatformCreateRequest === undefined) {
+            throw new Error('Required parameter challengePlatformCreateRequest was null or undefined when calling createChallengePlatform.');
+        }
+
+        let queryParameters = new HttpParams({encoder: this.encoder});
+        if (challengePlatformId !== undefined && challengePlatformId !== null) {
+          queryParameters = this.addToHttpParams(queryParameters,
+            <any>challengePlatformId, 'challengePlatformId');
         }
 
         let headers = this.defaultHeaders;
@@ -132,9 +141,10 @@ export class ChallengeService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.post<ChallengeCreateResponse>(`${this.configuration.basePath}/challenges`,
-            challengeCreateRequest,
+        return this.httpClient.post<ChallengePlatformCreateResponse>(`${this.configuration.basePath}/challengePlatforms`,
+            challengePlatformCreateRequest,
             {
+                params: queryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -145,15 +155,15 @@ export class ChallengeService {
     }
 
     /**
-     * Delete all challenges
-     * Delete all challenges
+     * Delete all challenge platforms
+     * Delete all challenge platforms
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteAllChallenges(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<object>;
-    public deleteAllChallenges(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<object>>;
-    public deleteAllChallenges(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<object>>;
-    public deleteAllChallenges(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public deleteAllChallengePlatforms(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<object>;
+    public deleteAllChallengePlatforms(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<object>>;
+    public deleteAllChallengePlatforms(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<object>>;
+    public deleteAllChallengePlatforms(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -175,7 +185,7 @@ export class ChallengeService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.delete<object>(`${this.configuration.basePath}/challenges`,
+        return this.httpClient.delete<object>(`${this.configuration.basePath}/challengePlatforms`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -187,64 +197,18 @@ export class ChallengeService {
     }
 
     /**
-     * Delete a challenge
-     * Deletes the challenge specified
-     * @param challengeId The ID of the challenge
+     * Delete a challenge platform
+     * Deletes the challenge platform specified
+     * @param challengePlatformId The ID of the challenge platform
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteChallenge(challengeId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<object>;
-    public deleteChallenge(challengeId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<object>>;
-    public deleteChallenge(challengeId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<object>>;
-    public deleteChallenge(challengeId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (challengeId === null || challengeId === undefined) {
-            throw new Error('Required parameter challengeId was null or undefined when calling deleteChallenge.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
-        }
-
-        return this.httpClient.delete<object>(`${this.configuration.basePath}/challenges/${encodeURIComponent(String(challengeId))}`,
-            {
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Get a challenge
-     * Returns the challenge specified
-     * @param challengeId The ID of the challenge
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getChallenge(challengeId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Challenge>;
-    public getChallenge(challengeId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Challenge>>;
-    public getChallenge(challengeId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Challenge>>;
-    public getChallenge(challengeId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (challengeId === null || challengeId === undefined) {
-            throw new Error('Required parameter challengeId was null or undefined when calling getChallenge.');
+    public deleteChallengePlatform(challengePlatformId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<object>;
+    public deleteChallengePlatform(challengePlatformId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<object>>;
+    public deleteChallengePlatform(challengePlatformId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<object>>;
+    public deleteChallengePlatform(challengePlatformId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (challengePlatformId === null || challengePlatformId === undefined) {
+            throw new Error('Required parameter challengePlatformId was null or undefined when calling deleteChallengePlatform.');
         }
 
         let headers = this.defaultHeaders;
@@ -267,7 +231,7 @@ export class ChallengeService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Challenge>(`${this.configuration.basePath}/challenges/${encodeURIComponent(String(challengeId))}`,
+        return this.httpClient.delete<object>(`${this.configuration.basePath}/challengePlatforms/${encodeURIComponent(String(challengePlatformId))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -279,23 +243,63 @@ export class ChallengeService {
     }
 
     /**
-     * List all the challenges
-     * Returns all the challenges
+     * Get a challenge platform
+     * Returns the challenge platform specified
+     * @param challengePlatformId The ID of the challenge platform
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getChallengePlatform(challengePlatformId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<ChallengePlatform>;
+    public getChallengePlatform(challengePlatformId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<ChallengePlatform>>;
+    public getChallengePlatform(challengePlatformId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<ChallengePlatform>>;
+    public getChallengePlatform(challengePlatformId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (challengePlatformId === null || challengePlatformId === undefined) {
+            throw new Error('Required parameter challengePlatformId was null or undefined when calling getChallengePlatform.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (httpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+
+        let responseType_: 'text' | 'json' = 'json';
+        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
+            responseType_ = 'text';
+        }
+
+        return this.httpClient.get<ChallengePlatform>(`${this.configuration.basePath}/challengePlatforms/${encodeURIComponent(String(challengePlatformId))}`,
+            {
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get all challenge platforms
+     * Returns the challenge platforms
      * @param limit Maximum number of results returned
      * @param offset Index of the first result that must be returned
-     * @param sort Property used to sort the results that must be returned
-     * @param direction Can be either &#x60;asc&#x60; or &#x60;desc&#x60;. Ignored without &#x60;sort&#x60; parameter.
-     * @param searchTerms A string of search terms used to filter the results
-     * @param tagIds Array of tag ids used to filter the results
-     * @param status Array of challenge status used to filter the results
-     * @param platformIds Array of challenge platform ids used to filter the results
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listChallenges(limit?: number, offset?: number, sort?: 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, tagIds?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<PageOfChallenges>;
-    public listChallenges(limit?: number, offset?: number, sort?: 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, tagIds?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<PageOfChallenges>>;
-    public listChallenges(limit?: number, offset?: number, sort?: 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, tagIds?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<PageOfChallenges>>;
-    public listChallenges(limit?: number, offset?: number, sort?: 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, tagIds?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public listChallengePlatforms(limit?: number, offset?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<PageOfChallengePlatforms>;
+    public listChallengePlatforms(limit?: number, offset?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<PageOfChallengePlatforms>>;
+    public listChallengePlatforms(limit?: number, offset?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<PageOfChallengePlatforms>>;
+    public listChallengePlatforms(limit?: number, offset?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: this.encoder});
         if (limit !== undefined && limit !== null) {
@@ -306,36 +310,6 @@ export class ChallengeService {
           queryParameters = this.addToHttpParams(queryParameters,
             <any>offset, 'offset');
         }
-        if (sort !== undefined && sort !== null) {
-          queryParameters = this.addToHttpParams(queryParameters,
-            <any>sort, 'sort');
-        }
-        if (direction !== undefined && direction !== null) {
-          queryParameters = this.addToHttpParams(queryParameters,
-            <any>direction, 'direction');
-        }
-        if (searchTerms !== undefined && searchTerms !== null) {
-          queryParameters = this.addToHttpParams(queryParameters,
-            <any>searchTerms, 'searchTerms');
-        }
-        if (tagIds) {
-            tagIds.forEach((element) => {
-                queryParameters = this.addToHttpParams(queryParameters,
-                  <any>element, 'tagIds');
-            })
-        }
-        if (status) {
-            status.forEach((element) => {
-                queryParameters = this.addToHttpParams(queryParameters,
-                  <any>element, 'status');
-            })
-        }
-        if (platformIds) {
-            platformIds.forEach((element) => {
-                queryParameters = this.addToHttpParams(queryParameters,
-                  <any>element, 'platformIds');
-            })
-        }
 
         let headers = this.defaultHeaders;
 
@@ -357,7 +331,7 @@ export class ChallengeService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<PageOfChallenges>(`${this.configuration.basePath}/challenges`,
+        return this.httpClient.get<PageOfChallengePlatforms>(`${this.configuration.basePath}/challengePlatforms`,
             {
                 params: queryParameters,
                 responseType: <any>responseType_,

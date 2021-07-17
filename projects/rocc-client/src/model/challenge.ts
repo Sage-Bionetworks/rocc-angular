@@ -11,6 +11,7 @@
  */
 import { ChallengeCreateRequest } from './challengeCreateRequest';
 import { ChallengeCreateResponse } from './challengeCreateResponse';
+import { ChallengeAllOf } from './challengeAllOf';
 import { ChallengeStatus } from './challengeStatus';
 
 
@@ -63,5 +64,17 @@ export interface Challenge {
      * The grants supporting this challenge
      */
     grantIds: Array<string>;
+    /**
+     * The ID of the challenge platform
+     */
+    platformId: string;
+    /**
+     * When this challenge has been created
+     */
+    createdAt: string;
+    /**
+     * When this challenge has last been updated
+     */
+    updatedAt: string;
 }
 
