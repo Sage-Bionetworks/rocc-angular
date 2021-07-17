@@ -21,7 +21,6 @@ import { PageOfPersons } from '../model/models';
 import { Person } from '../model/models';
 import { PersonCreateRequest } from '../model/models';
 import { PersonCreateResponse } from '../model/models';
-import { PersonFilter } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -283,14 +282,13 @@ export class PersonService {
      * Returns the persons
      * @param limit Maximum number of results returned
      * @param offset Index of the first result that must be returned
-     * @param filter Object that describes how to filter the results
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listPersons(limit?: number, offset?: number, filter?: PersonFilter, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<PageOfPersons>;
-    public listPersons(limit?: number, offset?: number, filter?: PersonFilter, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<PageOfPersons>>;
-    public listPersons(limit?: number, offset?: number, filter?: PersonFilter, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<PageOfPersons>>;
-    public listPersons(limit?: number, offset?: number, filter?: PersonFilter, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public listPersons(limit?: number, offset?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<PageOfPersons>;
+    public listPersons(limit?: number, offset?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<PageOfPersons>>;
+    public listPersons(limit?: number, offset?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<PageOfPersons>>;
+    public listPersons(limit?: number, offset?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: this.encoder});
         if (limit !== undefined && limit !== null) {
@@ -300,10 +298,6 @@ export class PersonService {
         if (offset !== undefined && offset !== null) {
           queryParameters = this.addToHttpParams(queryParameters,
             <any>offset, 'offset');
-        }
-        if (filter !== undefined && filter !== null) {
-          queryParameters = this.addToHttpParams(queryParameters,
-            <any>filter, 'filter');
         }
 
         let headers = this.defaultHeaders;

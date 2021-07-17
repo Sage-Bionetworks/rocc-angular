@@ -57,5 +57,9 @@ export interface ChallengeCreateRequest {
      * The grants supporting this challenge
      */
     grantIds: Array<string>;
+    /**
+     * The ID of the challenge platform
+     */
+    platformId: string;
 }
 
