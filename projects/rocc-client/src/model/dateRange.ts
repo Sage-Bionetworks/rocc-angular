@@ -15,10 +15,10 @@ export interface DateRange {
     /**
      * Start date of the date range
      */
-    start: string;
+    start?: string;
     /**
      * End date of the date range
      */
-    end: string;
+    end?: string;
 }
 
