@@ -11,14 +11,14 @@
  */
 
 
-export interface ChallengePlatformAllOf { 
+export interface DateRange { 
     /**
-     * When this challenge platform has been created
+     * Start date of the date range
      */
-    createdAt: string;
+    start: string;
     /**
-     * When this challenge platform has last been updated
+     * End date of the date range
      */
-    updatedAt: string;
+    end: string;
 }
 

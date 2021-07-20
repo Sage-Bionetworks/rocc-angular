@@ -7,6 +7,7 @@ export * from './challengePlatformAllOf';
 export * from './challengePlatformCreateRequest';
 export * from './challengePlatformCreateResponse';
 export * from './challengeStatus';
+export * from './dateRange';
 export * from './grant';
 export * from './grantCreateRequest';
 export * from './grantCreateResponse';
