@@ -11,7 +11,8 @@
     "generate:client": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i $npm_config_specification -c projects/rocc-client/config.yaml",
     "generate:client:edge": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i https://sage-bionetworks.github.io/rocc-schemas/edge/openapi.json -c projects/rocc-client/config.yaml",
     "generate:client:latest": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i https://sage-bionetworks.github.io/rocc-schemas/latest/openapi.json -c projects/rocc-client/config.yaml",
-    "generate:client:version": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i https://sage-bionetworks.github.io/rocc-schemas/${npm_config_oas_version}/openapi.json -c projects/rocc-client/config.yaml"
+    "generate:client:version": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i https://sage-bionetworks.github.io/rocc-schemas/${npm_config_oas_version}/openapi.json -c projects/rocc-client/config.yaml",
+    "release": "release-it"
   },
   "dependencies": {
     "@angular/animations": "~12.1.1",
@@ -30,6 +31,7 @@
     "@angular-devkit/build-angular": "~12.1.1",
     "@angular/cli": "~12.1.1",
     "@angular/compiler-cli": "~12.1.1",
+    "@openapitools/openapi-generator-cli": "2.3.6",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "jasmine-core": "3.7.1",
@@ -39,7 +41,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "1.6.0",
     "ng-packagr": "^12.1.0",
-    "typescript": "~4.3.2",
-    "@openapitools/openapi-generator-cli": "2.3.6"
+    "release-it": "^14.10.0",
+    "typescript": "~4.3.2"
   }
 }
