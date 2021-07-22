@@ -9,27 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ChallengePlatform } from './challengePlatform';
 
 
-/**
- * A person
- */
-export interface PersonCreateRequest { 
+export interface PageOfChallengePlatformsAllOf { 
     /**
-     * The first name of the person
+     * An array of ChallengePlatforms
      */
-    firstName: string;
-    /**
-     * The last name of the person
-     */
-    lastName: string;
-    /**
-     * An email address
-     */
-    email?: string;
-    /**
-     * The organizations the person belongs to
-     */
-    organizationIds: Array<string>;
+    challengePlatforms: Array<ChallengePlatform>;
 }
 

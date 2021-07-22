@@ -9,16 +9,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ChallengePlatform } from './challengePlatform';
 import { ResponsePageMetadataPaging } from './responsePageMetadataPaging';
-import { Person } from './person';
+import { PageOfChallengePlatformsAllOf } from './pageOfChallengePlatformsAllOf';
 import { ResponsePageMetadata } from './responsePageMetadata';
-import { PageOfPersonsAllOf } from './pageOfPersonsAllOf';
 
 
 /**
- * A page of Persons
+ * A page of ChallengePlatforms
  */
-export interface PageOfPersons { 
+export interface PageOfChallengePlatforms { 
     /**
      * Index of the first result that must be returned
      */
@@ -33,8 +33,8 @@ export interface PageOfPersons {
      */
     totalResults?: number;
     /**
-     * An array of Persons
+     * An array of ChallengePlatforms
      */
-    persons: Array<Person>;
+    challengePlatforms: Array<ChallengePlatform>;
 }
 

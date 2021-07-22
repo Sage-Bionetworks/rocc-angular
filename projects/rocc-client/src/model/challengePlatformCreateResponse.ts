@@ -12,24 +12,12 @@
 
 
 /**
- * A person
+ * A challenge platform ID
  */
-export interface PersonCreateRequest { 
+export interface ChallengePlatformCreateResponse { 
     /**
-     * The first name of the person
+     * The ID of the challenge platform
      */
-    firstName: string;
-    /**
-     * The last name of the person
-     */
-    lastName: string;
-    /**
-     * An email address
-     */
-    email?: string;
-    /**
-     * The organizations the person belongs to
-     */
-    organizationIds: Array<string>;
+    id: string;
 }
 

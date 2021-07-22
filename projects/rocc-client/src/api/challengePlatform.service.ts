@@ -17,10 +17,10 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { Organization } from '../model/models';
-import { OrganizationCreateRequest } from '../model/models';
-import { OrganizationCreateResponse } from '../model/models';
-import { PageOfOrganizations } from '../model/models';
+import { ChallengePlatform } from '../model/models';
+import { ChallengePlatformCreateRequest } from '../model/models';
+import { ChallengePlatformCreateResponse } from '../model/models';
+import { PageOfChallengePlatforms } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -30,7 +30,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class OrganizationService {
+export class ChallengePlatformService {
 
     protected basePath = 'https://rocc.org/api/v1';
     public defaultHeaders = new HttpHeaders();
@@ -88,28 +88,28 @@ export class OrganizationService {
     }
 
     /**
-     * Create an organization
-     * Create an organization with the specified name
-     * @param organizationId The ID of the organization that is being created
-     * @param organizationCreateRequest 
+     * Create a challenge platform
+     * Create a challenge platform with the specified ID
+     * @param challengePlatformId The ID of the challenge platform that is being created
+     * @param challengePlatformCreateRequest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createOrganization(organizationId: string, organizationCreateRequest: OrganizationCreateRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<OrganizationCreateResponse>;
-    public createOrganization(organizationId: string, organizationCreateRequest: OrganizationCreateRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<OrganizationCreateResponse>>;
-    public createOrganization(organizationId: string, organizationCreateRequest: OrganizationCreateRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<OrganizationCreateResponse>>;
-    public createOrganization(organizationId: string, organizationCreateRequest: OrganizationCreateRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (organizationId === null || organizationId === undefined) {
-            throw new Error('Required parameter organizationId was null or undefined when calling createOrganization.');
+    public createChallengePlatform(challengePlatformId: string, challengePlatformCreateRequest: ChallengePlatformCreateRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<ChallengePlatformCreateResponse>;
+    public createChallengePlatform(challengePlatformId: string, challengePlatformCreateRequest: ChallengePlatformCreateRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<ChallengePlatformCreateResponse>>;
+    public createChallengePlatform(challengePlatformId: string, challengePlatformCreateRequest: ChallengePlatformCreateRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<ChallengePlatformCreateResponse>>;
+    public createChallengePlatform(challengePlatformId: string, challengePlatformCreateRequest: ChallengePlatformCreateRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (challengePlatformId === null || challengePlatformId === undefined) {
+            throw new Error('Required parameter challengePlatformId was null or undefined when calling createChallengePlatform.');
         }
-        if (organizationCreateRequest === null || organizationCreateRequest === undefined) {
-            throw new Error('Required parameter organizationCreateRequest was null or undefined when calling createOrganization.');
+        if (challengePlatformCreateRequest === null || challengePlatformCreateRequest === undefined) {
+            throw new Error('Required parameter challengePlatformCreateRequest was null or undefined when calling createChallengePlatform.');
         }
 
         let queryParameters = new HttpParams({encoder: this.encoder});
-        if (organizationId !== undefined && organizationId !== null) {
+        if (challengePlatformId !== undefined && challengePlatformId !== null) {
           queryParameters = this.addToHttpParams(queryParameters,
-            <any>organizationId, 'organizationId');
+            <any>challengePlatformId, 'challengePlatformId');
         }
 
         let headers = this.defaultHeaders;
@@ -141,8 +141,8 @@ export class OrganizationService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.post<OrganizationCreateResponse>(`${this.configuration.basePath}/organizations`,
-            organizationCreateRequest,
+        return this.httpClient.post<ChallengePlatformCreateResponse>(`${this.configuration.basePath}/challengePlatforms`,
+            challengePlatformCreateRequest,
             {
                 params: queryParameters,
                 responseType: <any>responseType_,
@@ -155,15 +155,15 @@ export class OrganizationService {
     }
 
     /**
-     * Delete all organizations
-     * Delete all organizations
+     * Delete all challenge platforms
+     * Delete all challenge platforms
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteAllOrganizations(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<object>;
-    public deleteAllOrganizations(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<object>>;
-    public deleteAllOrganizations(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<object>>;
-    public deleteAllOrganizations(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public deleteAllChallengePlatforms(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<object>;
+    public deleteAllChallengePlatforms(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<object>>;
+    public deleteAllChallengePlatforms(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<object>>;
+    public deleteAllChallengePlatforms(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -185,7 +185,7 @@ export class OrganizationService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.delete<object>(`${this.configuration.basePath}/organizations`,
+        return this.httpClient.delete<object>(`${this.configuration.basePath}/challengePlatforms`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -197,64 +197,18 @@ export class OrganizationService {
     }
 
     /**
-     * Delete an organization
-     * Deletes the organization specified
-     * @param organizationId The ID of the organization
+     * Delete a challenge platform
+     * Deletes the challenge platform specified
+     * @param challengePlatformId The ID of the challenge platform
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteOrganization(organizationId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<object>;
-    public deleteOrganization(organizationId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<object>>;
-    public deleteOrganization(organizationId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<object>>;
-    public deleteOrganization(organizationId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (organizationId === null || organizationId === undefined) {
-            throw new Error('Required parameter organizationId was null or undefined when calling deleteOrganization.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
-        }
-
-        return this.httpClient.delete<object>(`${this.configuration.basePath}/organizations/${encodeURIComponent(String(organizationId))}`,
-            {
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Get an organization
-     * Returns the organization specified
-     * @param organizationId The ID of the organization
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getOrganization(organizationId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Organization>;
-    public getOrganization(organizationId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Organization>>;
-    public getOrganization(organizationId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Organization>>;
-    public getOrganization(organizationId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (organizationId === null || organizationId === undefined) {
-            throw new Error('Required parameter organizationId was null or undefined when calling getOrganization.');
+    public deleteChallengePlatform(challengePlatformId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<object>;
+    public deleteChallengePlatform(challengePlatformId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<object>>;
+    public deleteChallengePlatform(challengePlatformId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<object>>;
+    public deleteChallengePlatform(challengePlatformId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (challengePlatformId === null || challengePlatformId === undefined) {
+            throw new Error('Required parameter challengePlatformId was null or undefined when calling deleteChallengePlatform.');
         }
 
         let headers = this.defaultHeaders;
@@ -277,7 +231,7 @@ export class OrganizationService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Organization>(`${this.configuration.basePath}/organizations/${encodeURIComponent(String(organizationId))}`,
+        return this.httpClient.delete<object>(`${this.configuration.basePath}/challengePlatforms/${encodeURIComponent(String(challengePlatformId))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -289,17 +243,63 @@ export class OrganizationService {
     }
 
     /**
-     * Get all organizations
-     * Returns the organizations
+     * Get a challenge platform
+     * Returns the challenge platform specified
+     * @param challengePlatformId The ID of the challenge platform
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getChallengePlatform(challengePlatformId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<ChallengePlatform>;
+    public getChallengePlatform(challengePlatformId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<ChallengePlatform>>;
+    public getChallengePlatform(challengePlatformId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<ChallengePlatform>>;
+    public getChallengePlatform(challengePlatformId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (challengePlatformId === null || challengePlatformId === undefined) {
+            throw new Error('Required parameter challengePlatformId was null or undefined when calling getChallengePlatform.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (httpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+
+        let responseType_: 'text' | 'json' = 'json';
+        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
+            responseType_ = 'text';
+        }
+
+        return this.httpClient.get<ChallengePlatform>(`${this.configuration.basePath}/challengePlatforms/${encodeURIComponent(String(challengePlatformId))}`,
+            {
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Get all challenge platforms
+     * Returns the challenge platforms
      * @param limit Maximum number of results returned
      * @param offset Index of the first result that must be returned
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listOrganizations(limit?: number, offset?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<PageOfOrganizations>;
-    public listOrganizations(limit?: number, offset?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<PageOfOrganizations>>;
-    public listOrganizations(limit?: number, offset?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<PageOfOrganizations>>;
-    public listOrganizations(limit?: number, offset?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public listChallengePlatforms(limit?: number, offset?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<PageOfChallengePlatforms>;
+    public listChallengePlatforms(limit?: number, offset?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<PageOfChallengePlatforms>>;
+    public listChallengePlatforms(limit?: number, offset?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<PageOfChallengePlatforms>>;
+    public listChallengePlatforms(limit?: number, offset?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: this.encoder});
         if (limit !== undefined && limit !== null) {
@@ -331,7 +331,7 @@ export class OrganizationService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<PageOfOrganizations>(`${this.configuration.basePath}/organizations`,
+        return this.httpClient.get<PageOfChallengePlatforms>(`${this.configuration.basePath}/challengePlatforms`,
             {
                 params: queryParameters,
                 responseType: <any>responseType_,
