@@ -11,25 +11,14 @@
  */
 
 
-/**
- * A person
- */
-export interface PersonCreateRequest { 
+export interface DateRange { 
     /**
-     * The first name of the person
+     * Start date of the date range
      */
-    firstName: string;
+    start?: string;
     /**
-     * The last name of the person
+     * End date of the date range
      */
-    lastName: string;
-    /**
-     * An email address
-     */
-    email?: string;
-    /**
-     * The organizations the person belongs to
-     */
-    organizationIds: Array<string>;
+    end?: string;
 }
 

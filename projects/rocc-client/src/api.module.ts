@@ -3,6 +3,7 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 import { ChallengeService } from './api/challenge.service';
+import { ChallengePlatformService } from './api/challengePlatform.service';
 import { GrantService } from './api/grant.service';
 import { HealthCheckService } from './api/healthCheck.service';
 import { OrganizationService } from './api/organization.service';

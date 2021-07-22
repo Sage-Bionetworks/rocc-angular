@@ -11,25 +11,14 @@
  */
 
 
-/**
- * A person
- */
-export interface PersonCreateRequest { 
+export interface ChallengeAllOf { 
     /**
-     * The first name of the person
+     * When this challenge has been created
      */
-    firstName: string;
+    createdAt: string;
     /**
-     * The last name of the person
+     * When this challenge has last been updated
      */
-    lastName: string;
-    /**
-     * An email address
-     */
-    email?: string;
-    /**
-     * The organizations the person belongs to
-     */
-    organizationIds: Array<string>;
+    updatedAt: string;
 }
 
