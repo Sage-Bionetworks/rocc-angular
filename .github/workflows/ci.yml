@@ -37,6 +37,7 @@ jobs:
         path: .github_env
 
   build:
+    needs: [configure]
     runs-on: ubuntu-latest
 
     strategy:
