@@ -1,0 +1,88 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*.*.*'
+  pull_request:
+
+env:
+  node_version: 14
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12, 14]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache node modules
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Setup node ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libgbm-dev
+
+    - name: Install npm dependencies
+      run: npm ci
+
+    - run: npm run test:ci
+
+    # - name: Prepare environment for coveralls
+    #   run: |
+    #     echo "NODE_ENV=$(echo node-${{ matrix.node-version }} | tr -d .)" >> $GITHUB_ENV
+
+    # - name: Coveralls Parallel
+    #   env:
+    #     COVERALLS_FLAG_NAME: ${{ env.NODE_ENV }}
+    #     COVERALLS_PARALLEL: true
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   run: npm run coverage
+
+    - run: npm run build
+
+  # finish-coveralls:
+  #   needs: [test]
+  #   runs-on: ubuntu-latest
+  #   container: python:3-slim
+  #   steps:
+  #   - name: Finish Coveralls Parallel
+  #     env:
+  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     run: |
+  #       pip3 install --upgrade coveralls
+  #       coveralls --finish
+
+  publish:
+    if: github.event_name == 'release' && github.event.action == 'created'
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup node ${{ env.node_version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ env.node_version }}
+        registry-url: 'https://registry.npmjs.org'
+    - run: npm ci
+    - run: npm run build
+    - run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
