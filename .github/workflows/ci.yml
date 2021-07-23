@@ -8,6 +8,9 @@ on:
       - '*.*.*'
   pull_request:
 
+env:
+  node_version: 14
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,7 +30,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
 
-    - name: Setup Node.js environment
+    - name: Setup node ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
@@ -66,3 +69,20 @@ jobs:
   #     run: |
   #       pip3 install --upgrade coveralls
   #       coveralls --finish
+
+  publish:
+    if: github.event_name == 'release' && github.event.action == 'created'
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup node ${{ env.node_version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ env.node_version }}
+        registry-url: 'https://registry.npmjs.org'
+    - run: npm ci
+    - run: npm run build
+    - run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
