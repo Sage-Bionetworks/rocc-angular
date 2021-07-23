@@ -130,6 +130,7 @@ jobs:
     - name: Push package to npmjs
       if: env.push == 'true'
       run: |
+        cp README.md dist/rocc-client/.
         cd dist/rocc-client
         npm publish --access public
       env:
