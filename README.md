@@ -16,7 +16,7 @@ available.
 ## Specification
 
 - ROCC schemas version: 0.2.0
-- ROCC client library version: 0.4.1
+- ROCC client library version: 0.4.5
 
 
 ## Requirements
@@ -81,5 +81,5 @@ Thinking about contributing to this project? Get started by reading our
 [Node]: https://nodejs.org/en/
 [npmjs.org]: https://www.npmjs.com/
 [semantic versioning]: https://semver.org/
-[contribution guidelines]: .github/CONTRIBUTING.md
+[contribution guidelines]: https://github.com/Sage-Bionetworks/rocc-client-angular/blob/main/.github/CONTRIBUTING.md
 [Apache License 2.0]: https://github.com/Sage-Bionetworks/rocc-client-angular/blob/main/LICENSE
