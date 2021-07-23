@@ -26,7 +26,7 @@ jobs:
           PUSH=true
         fi
         printf "%s\n" \
-          "version=${version}" \
+          "version=${VERSION}" \
           "created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
           "push=${PUSH}" | tee -a .github_env
 
@@ -42,7 +42,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12, 14]
+        node: [12, 14]
 
     steps:
     - uses: actions/checkout@v2
@@ -55,10 +55,10 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
 
-    - name: Setup node ${{ matrix.node-version }}
+    - name: Setup node ${{ matrix.node }}
       uses: actions/setup-node@v2
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: ${{ matrix.node }}
 
     - name: Install system dependencies
       run: |
@@ -72,7 +72,7 @@ jobs:
 
     # - name: Prepare environment for coveralls
     #   run: |
-    #     echo "NODE_ENV=$(echo node-${{ matrix.node-version }} | tr -d .)" >> $GITHUB_ENV
+    #     echo "NODE_ENV=$(echo node-${{ matrix.node }} | tr -d .)" >> $GITHUB_ENV
 
     # - name: Coveralls Parallel
     #   env:
@@ -111,22 +111,22 @@ jobs:
       run: cat .github_env >> $GITHUB_ENV
 
     - name: Setup node ${{ env.node_version }}
-      if: ${{ env.push }}
+      if: env.push == 'true'
       uses: actions/setup-node@v2
       with:
         node-version: ${{ env.node_version }}
         registry-url: 'https://registry.npmjs.org'
 
     - name: Install npm dependencies
-      if: ${{ env.push }}
+      if: env.push == 'true'
       run: npm ci
 
     - name: Build package
-      if: ${{ env.push }}
+      if: env.push == 'true'
       run: npm run build
 
     - name: Push package to npmjs
-      if: ${{ env.push }}
+      if: env.push == 'true'
       run: |
         cd dist/rocc-client
         npm publish --access public
