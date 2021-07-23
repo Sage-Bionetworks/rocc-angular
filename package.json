@@ -14,7 +14,7 @@
     "generate:client:latest": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i https://sage-bionetworks.github.io/rocc-schemas/latest/openapi.json -c projects/rocc-client/config.yaml",
     "generate:client:version": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i https://sage-bionetworks.github.io/rocc-schemas/${npm_config_oas_version}/openapi.json -c projects/rocc-client/config.yaml",
     "release": "release-it",
-    "coverage": "npx nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "dependencies": {
     "@angular/animations": "~12.1.1",

@@ -42,25 +42,25 @@ jobs:
 
     - run: npm run test:ci
 
-    - name: Prepare environment for coveralls
-      run: |
-        echo "NODE_ENV=$(echo node-${{ matrix.node-version }} | tr -d .)" >> $GITHUB_ENV
+    # - name: Prepare environment for coveralls
+    #   run: |
+    #     echo "NODE_ENV=$(echo node-${{ matrix.node-version }} | tr -d .)" >> $GITHUB_ENV
 
-    - name: Coveralls Parallel
-      env:
-        COVERALLS_FLAG_NAME: ${{ env.NODE_ENV }}
-        COVERALLS_PARALLEL: true
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: npm run coverage
+    # - name: Coveralls Parallel
+    #   env:
+    #     COVERALLS_FLAG_NAME: ${{ env.NODE_ENV }}
+    #     COVERALLS_PARALLEL: true
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   run: npm run coverage
 
-  finish-coveralls:
-    needs: [test]
-    runs-on: ubuntu-latest
-    container: python:3-slim
-    steps:
-    - name: Finish Coveralls Parallel
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        pip3 install --upgrade coveralls
-        coveralls --finish
+  # finish-coveralls:
+  #   needs: [test]
+  #   runs-on: ubuntu-latest
+  #   container: python:3-slim
+  #   steps:
+  #   - name: Finish Coveralls Parallel
+  #     env:
+  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     run: |
+  #       pip3 install --upgrade coveralls
+  #       coveralls --finish
