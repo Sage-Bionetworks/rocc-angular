@@ -42,8 +42,6 @@ jobs:
 
     - run: npm run test:ci
 
-    - run: npm run build
-
     # - name: Prepare environment for coveralls
     #   run: |
     #     echo "NODE_ENV=$(echo node-${{ matrix.node-version }} | tr -d .)" >> $GITHUB_ENV
@@ -54,6 +52,8 @@ jobs:
     #     COVERALLS_PARALLEL: true
     #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     #   run: npm run coverage
+
+    - run: npm run build
 
   # finish-coveralls:
   #   needs: [test]
