@@ -44,6 +44,8 @@ jobs:
       matrix:
         node: [12, 14]
 
+    name: node-${{ matrix.node-version }}
+
     steps:
     - uses: actions/checkout@v2
 
@@ -55,7 +57,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
 
-    - name: Setup node ${{ matrix.node }}
+    - name: Setup Node.js ${{ matrix.node }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node }}
@@ -110,7 +112,7 @@ jobs:
     - name: Restore $GITHUB_ENV
       run: cat .github_env >> $GITHUB_ENV
 
-    - name: Setup node ${{ env.node_version }}
+    - name: Setup Node.js ${{ env.node_version }}
       if: env.push == 'true'
       uses: actions/setup-node@v2
       with:
