@@ -9,7 +9,7 @@ on:
   pull_request:
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -41,6 +41,8 @@ jobs:
       run: npm ci
 
     - run: npm run test:ci
+
+    - run: npm run build
 
     # - name: Prepare environment for coveralls
     #   run: |
