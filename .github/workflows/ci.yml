@@ -12,6 +12,30 @@ env:
   node_version: 14
 
 jobs:
+  configure:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create configuration
+      run: |
+        VERSION=noop
+        PUSH=false
+        if [[ $GITHUB_REF == refs/tags/* ]]; then
+          VERSION=${GITHUB_REF#refs/tags/}
+        fi
+        if [[ $VERSION =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+          PUSH=true
+        fi
+        printf "%s\n" \
+          "version=${version}" \
+          "created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
+          "push=${PUSH}" | tee -a .github_env
+
+    - name: Upload .github_env
+      uses: actions/upload-artifact@v2
+      with:
+        name: GITHUB_ENV
+        path: .github_env
+
   build:
     runs-on: ubuntu-latest
 
@@ -71,18 +95,39 @@ jobs:
   #       coveralls --finish
 
   publish:
-    if: github.event_name == 'release' && github.event.action == 'created'
     needs: [build]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+
+    - name: Download .github_env
+      uses: actions/download-artifact@v2
+      with:
+        name: GITHUB_ENV
+        path: .
+
+    - name: Restore $GITHUB_ENV
+      run: cat .github_env >> $GITHUB_ENV
+
     - name: Setup node ${{ env.node_version }}
+      if: ${{ env.push }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ env.node_version }}
         registry-url: 'https://registry.npmjs.org'
-    - run: npm ci
-    - run: npm run build
-    - run: npm publish --access public
+
+    - name: Install npm dependencies
+      if: ${{ env.push }}
+      run: npm ci
+
+    - name: Build package
+      if: ${{ env.push }}
+      run: npm run build
+
+    - name: Push package to npmjs
+      if: ${{ env.push }}
+      run: |
+        cd dist/rocc-client
+        npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
