@@ -19,13 +19,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    # - name: Cache node modules
-    #   uses: actions/cache@v2
-    #   with:
-    #     path: ~/.npm
-    #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-    #     restore-keys: |
-    #       ${{ runner.os }}-node-
+    - name: Cache node modules
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
 
     - name: Setup Node.js environment
       uses: actions/setup-node@v2
@@ -42,6 +42,25 @@ jobs:
 
     - run: npm run test:ci
 
-    # - run: npm run coverage
+    - name: Prepare environment for coveralls
+      run: |
+        echo "NODE_ENV=$(echo node-${{ matrix.node-version }} | tr -d .)" >> $GITHUB_ENV
 
-    # - run: npm run pushCoverageReport
+    - name: Coveralls Parallel
+      env:
+        COVERALLS_FLAG_NAME: ${{ env.NODE_ENV }}
+        COVERALLS_PARALLEL: true
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: npm run coverage
+
+  finish-coveralls:
+    needs: [test]
+    runs-on: ubuntu-latest
+    container: python:3-slim
+    steps:
+    - name: Finish Coveralls Parallel
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        pip3 install --upgrade coveralls
+        coveralls --finish
