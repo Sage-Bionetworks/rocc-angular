@@ -44,7 +44,7 @@ jobs:
       matrix:
         node: [12, 14]
 
-    name: node-${{ matrix.node }}
+    name: build (node-${{ matrix.node }})
 
     steps:
     - uses: actions/checkout@v2
