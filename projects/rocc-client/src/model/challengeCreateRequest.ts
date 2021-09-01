@@ -20,13 +20,13 @@ export interface ChallengeCreateRequest {
      * The name of the challenge
      */
     name: string;
-    displayName: string;
+    displayName?: string;
     /**
      * A short description of the challenge
      */
     description: string | null;
-    websiteUrl: string;
-    status: ChallengeStatus;
+    websiteUrl?: string;
+    status?: ChallengeStatus;
     startDate?: string | null;
     endDate?: string | null;
     /**
