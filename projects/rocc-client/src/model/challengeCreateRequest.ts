@@ -17,7 +17,7 @@ import { ChallengeStatus } from './challengeStatus';
  */
 export interface ChallengeCreateRequest { 
     /**
-     * The name of the challenge
+     * The name of the a challenge
      */
     name: string;
     displayName?: string;

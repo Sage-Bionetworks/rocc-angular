@@ -24,7 +24,7 @@ export interface Challenge {
      */
     id: string;
     /**
-     * The name of the challenge
+     * The name of the a challenge
      */
     name: string;
     displayName?: string;
