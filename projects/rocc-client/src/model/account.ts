@@ -18,12 +18,12 @@ export interface Account {
     /**
      * The unique identifier of an account
      */
-    id?: string;
+    id: string;
     /**
      * The user or organization account name
      */
-    login?: string;
-    type?: Account.TypeEnum;
+    login: string;
+    type: Account.TypeEnum;
 }
 export namespace Account {
     export type TypeEnum = 'User' | 'Organization';
