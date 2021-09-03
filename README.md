@@ -1,7 +1,9 @@
 # ROCC Client Library for Angular
 
 [![GitHub Release](https://img.shields.io/github/release/Sage-Bionetworks/rocc-angular-client.svg?include_prereleases&color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/Sage-Bionetworks/rocc-angular-client)
+[![GitHub CI](https://img.shields.io/github/workflow/status/Sage-Bionetworks/rocc-angular-client/CI.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/Sage-Bionetworks/rocc-angular-client/actions)
 [![GitHub License](https://img.shields.io/github/license/sage-bionetworks/rocc-angular-client.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/sage-bionetworks/rocc-angular-client)
+[![Latest npm version](https://img.shields.io/npm/v/@sage-bionetworks/rocc-client-angular?logo=npm&style=for-the-badge&color=94398d&labelColor=555555&logoColor=ffffff)](https://www.npmjs.com/package/@sage-bionetworks/rocc-client-angular)
 
 ## Introduction
 
