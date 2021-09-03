@@ -17,7 +17,7 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { HealthCheck } from '../model/models';
+import { Account } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -27,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class HealthCheckService {
+export class AccountService {
 
     protected basePath = 'https://rocc.org/api/v1';
     public defaultHeaders = new HttpHeaders();
@@ -85,15 +85,19 @@ export class HealthCheckService {
     }
 
     /**
-     * Get health check information
-     * Get information about the health of the service
+     * Get an account
+     * Returns the user or org account
+     * @param login The login of an account
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getHealthCheck(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HealthCheck>;
-    public getHealthCheck(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<HealthCheck>>;
-    public getHealthCheck(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<HealthCheck>>;
-    public getHealthCheck(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public getAccount(login: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Account>;
+    public getAccount(login: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Account>>;
+    public getAccount(login: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Account>>;
+    public getAccount(login: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (login === null || login === undefined) {
+            throw new Error('Required parameter login was null or undefined when calling getAccount.');
+        }
 
         let headers = this.defaultHeaders;
 
@@ -115,7 +119,7 @@ export class HealthCheckService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<HealthCheck>(`${this.configuration.basePath}/healthcheck`,
+        return this.httpClient.get<Account>(`${this.configuration.basePath}/accounts/${encodeURIComponent(String(login))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,

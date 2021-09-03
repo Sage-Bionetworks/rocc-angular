@@ -1,6 +1,5 @@
 {
   "name": "rocc-client",
-  "version": "0.4.5",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -12,7 +11,7 @@
     "generate:client": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i $npm_config_specification -c projects/rocc-client/config.yaml",
     "generate:client:edge": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i https://sage-bionetworks.github.io/rocc-schemas/edge/openapi.json -c projects/rocc-client/config.yaml",
     "generate:client:latest": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i https://sage-bionetworks.github.io/rocc-schemas/latest/openapi.json -c projects/rocc-client/config.yaml",
-    "generate:client:version": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i https://sage-bionetworks.github.io/rocc-schemas/${npm_config_oas_version}/openapi.json -c projects/rocc-client/config.yaml",
+    "generate:client:version": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i https://sage-bionetworks.github.io/rocc-schemas/${npm_config_rocc_version}/openapi.json -c projects/rocc-client/config.yaml",
     "release": "release-it",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -22,18 +21,18 @@
     "@angular/compiler": "~12.1.1",
     "@angular/core": "~12.1.1",
     "@angular/forms": "~12.1.1",
-    "@angular/platform-browser": "~12.1.4",
+    "@angular/platform-browser": "~12.1.1",
     "@angular/platform-browser-dynamic": "~12.1.1",
-    "@angular/router": "~12.2.0",
-    "rxjs": "~6.6.0",
+    "@angular/router": "~12.1.1",
+    "rxjs": "^6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.2.0",
-    "@angular/cli": "~12.2.0",
+    "@angular-devkit/build-angular": "~12.1.1",
+    "@angular/cli": "~12.1.1",
     "@angular/compiler-cli": "~12.1.1",
-    "@openapitools/openapi-generator-cli": "2.3.10",
+    "@openapitools/openapi-generator-cli": "^2.4.1",
     "@types/jasmine": "~3.8.2",
     "@types/node": "^16.4.9",
     "coveralls": "^3.1.1",
@@ -48,5 +47,6 @@
     "puppeteer": "^10.1.0",
     "release-it": "^14.11.3",
     "typescript": "~4.3.2"
-  }
+  },
+  "private": true
 }
