@@ -9,13 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { User } from './user';
 
 
-export interface PageOfUsersAllOf { 
-    /**
-     * An array of Users
-     */
-    users: Array<User>;
+export interface UserAllOf { 
+    name?: string | null;
+    avatarUrl?: string | null;
+    createdAt: string;
+    updatedAt: string;
+    type: string;
 }
 

@@ -9,25 +9,28 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ResponsePageMetadataPaging } from './responsePageMetadataPaging';
 
 
 /**
- * A page of results
+ * A user or organization account
  */
-export interface ResponsePageMetadata { 
+export interface Account { 
     /**
-     * Index of the first result that must be returned
+     * The unique identifier of an account
      */
-    offset: number;
+    id: string;
     /**
-     * Maximum number of results returned
+     * The user or organization account name
      */
-    limit: number;
-    paging: ResponsePageMetadataPaging;
-    /**
-     * Total number of results in the result set
-     */
-    totalResults?: number;
+    login: string;
+    type: Account.TypeEnum;
 }
+export namespace Account {
+    export type TypeEnum = 'User' | 'Organization';
+    export const TypeEnum = {
+        User: 'User' as TypeEnum,
+        Organization: 'Organization' as TypeEnum
+    };
+}
+
 
