@@ -12,8 +12,6 @@
 
 
 export interface UserAllOf { 
-    name?: string | null;
-    avatarUrl?: string | null;
     createdAt: string;
     updatedAt: string;
     type: string;
