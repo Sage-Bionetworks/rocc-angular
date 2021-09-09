@@ -7,6 +7,7 @@ import { ChallengeService } from './api/challenge.service';
 import { ChallengePlatformService } from './api/challengePlatform.service';
 import { GrantService } from './api/grant.service';
 import { HealthCheckService } from './api/healthCheck.service';
+import { OrgMembershipService } from './api/orgMembership.service';
 import { OrganizationService } from './api/organization.service';
 import { PersonService } from './api/person.service';
 import { TagService } from './api/tag.service';
