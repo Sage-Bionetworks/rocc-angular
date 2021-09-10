@@ -20,7 +20,5 @@ export interface UserCreateRequest {
      * An email address
      */
     email: string;
-    name?: string | null;
-    avatarUrl?: string | null;
 }
 

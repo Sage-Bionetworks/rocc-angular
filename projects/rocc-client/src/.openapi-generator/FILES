@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 README.md
 api.module.ts
 api/account.service.ts
@@ -7,7 +8,6 @@ api/challenge.service.ts
 api/challengePlatform.service.ts
 api/grant.service.ts
 api/healthCheck.service.ts
-api/orgMembership.service.ts
 api/organization.service.ts
 api/person.service.ts
 api/tag.service.ts
@@ -33,9 +33,6 @@ model/grantCreateRequest.ts
 model/grantCreateResponse.ts
 model/healthCheck.ts
 model/models.ts
-model/orgMembership.ts
-model/orgMembershipCreateRequest.ts
-model/orgMembershipCreateResponse.ts
 model/organization.ts
 model/organizationAllOf.ts
 model/organizationCreateRequest.ts
@@ -46,8 +43,6 @@ model/pageOfChallenges.ts
 model/pageOfChallengesAllOf.ts
 model/pageOfGrants.ts
 model/pageOfGrantsAllOf.ts
-model/pageOfOrgMemberships.ts
-model/pageOfOrgMembershipsAllOf.ts
 model/pageOfOrganizations.ts
 model/pageOfOrganizationsAllOf.ts
 model/pageOfPersons.ts
