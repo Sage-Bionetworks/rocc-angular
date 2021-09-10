@@ -1,6 +1,6 @@
 {
   "name": "@sage-bionetworks/rocc-client-angular",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "ROCC client library for Angular",
   "author": "ROCC Team",
   "keywords": [
