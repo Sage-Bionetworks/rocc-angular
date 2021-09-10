@@ -278,17 +278,19 @@ export class OrgMembershipService {
     }
 
     /**
-     * Get all org memberships
+     * List all the org memberships
      * Returns the org memberships
      * @param limit Maximum number of results returned
      * @param offset Index of the first result that must be returned
+     * @param orgId An organization identifier used to filter the results
+     * @param userId A user identifier used to filter the results
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listOrgMemberships(limit?: number, offset?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<PageOfOrgMemberships>;
-    public listOrgMemberships(limit?: number, offset?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<PageOfOrgMemberships>>;
-    public listOrgMemberships(limit?: number, offset?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<PageOfOrgMemberships>>;
-    public listOrgMemberships(limit?: number, offset?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public listOrgMemberships(limit?: number, offset?: number, orgId?: string, userId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<PageOfOrgMemberships>;
+    public listOrgMemberships(limit?: number, offset?: number, orgId?: string, userId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<PageOfOrgMemberships>>;
+    public listOrgMemberships(limit?: number, offset?: number, orgId?: string, userId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<PageOfOrgMemberships>>;
+    public listOrgMemberships(limit?: number, offset?: number, orgId?: string, userId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: this.encoder});
         if (limit !== undefined && limit !== null) {
@@ -298,6 +300,14 @@ export class OrgMembershipService {
         if (offset !== undefined && offset !== null) {
           queryParameters = this.addToHttpParams(queryParameters,
             <any>offset, 'offset');
+        }
+        if (orgId !== undefined && orgId !== null) {
+          queryParameters = this.addToHttpParams(queryParameters,
+            <any>orgId, 'orgId');
+        }
+        if (userId !== undefined && userId !== null) {
+          queryParameters = this.addToHttpParams(queryParameters,
+            <any>userId, 'userId');
         }
 
         let headers = this.defaultHeaders;
