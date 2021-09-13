@@ -1,5 +1,5 @@
 /**
- * Registry of Open Community Challenge API
+ * Registry of Open Community Challenges API
  * The OpenAPI specification implemented by the Challenge Registries. # Introduction TBA 
  *
  * The version of the OpenAPI document: 0.4.0
@@ -11,7 +11,6 @@
  */
 import { UserCreateResponse } from './userCreateResponse';
 import { UserAllOf } from './userAllOf';
-import { UserCreateRequest } from './userCreateRequest';
 
 
 /**

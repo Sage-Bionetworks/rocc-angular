@@ -3,6 +3,7 @@ README.md
 api.module.ts
 api/account.service.ts
 api/api.ts
+api/auth.service.ts
 api/challenge.service.ts
 api/challengePlatform.service.ts
 api/grant.service.ts
@@ -32,6 +33,8 @@ model/grant.ts
 model/grantCreateRequest.ts
 model/grantCreateResponse.ts
 model/healthCheck.ts
+model/localAuthRequest.ts
+model/localAuthResponse.ts
 model/models.ts
 model/orgMembership.ts
 model/orgMembershipCreateRequest.ts

@@ -12,16 +12,13 @@
 
 
 /**
- * A date range
+ * The information required to authentify a local account
  */
-export interface DateRange { 
+export interface LocalAuthRequest { 
     /**
-     * Start date of the date range
+     * The user or organization account name
      */
-    start?: string;
-    /**
-     * End date of the date range
-     */
-    end?: string;
+    login: string;
+    password: string;
 }
 
