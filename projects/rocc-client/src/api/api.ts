@@ -1,5 +1,7 @@
 export * from './account.service';
 import { AccountService } from './account.service';
+export * from './auth.service';
+import { AuthService } from './auth.service';
 export * from './challenge.service';
 import { ChallengeService } from './challenge.service';
 export * from './challengePlatform.service';
@@ -18,4 +20,4 @@ export * from './tag.service';
 import { TagService } from './tag.service';
 export * from './user.service';
 import { UserService } from './user.service';
-export const APIS = [AccountService, ChallengeService, ChallengePlatformService, GrantService, HealthCheckService, OrgMembershipService, OrganizationService, PersonService, TagService, UserService];
+export const APIS = [AccountService, AuthService, ChallengeService, ChallengePlatformService, GrantService, HealthCheckService, OrgMembershipService, OrganizationService, PersonService, TagService, UserService];

@@ -1,5 +1,5 @@
 /**
- * Registry of Open Community Challenge API
+ * Registry of Open Community Challenges API
  * The OpenAPI specification implemented by the Challenge Registries. # Introduction TBA 
  *
  * The version of the OpenAPI document: 0.4.0
@@ -20,6 +20,7 @@ export interface UserCreateRequest {
      * An email address
      */
     email: string;
+    password: string;
     name?: string | null;
     avatarUrl?: string | null;
 }

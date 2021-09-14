@@ -17,7 +17,8 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { Account } from '../model/models';
+import { LocalAuthRequest } from '../model/models';
+import { LocalAuthResponse } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -27,7 +28,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class AccountService {
+export class AuthService {
 
     protected basePath = 'https://rocc.org/api/v1';
     public defaultHeaders = new HttpHeaders();
@@ -85,28 +86,21 @@ export class AccountService {
     }
 
     /**
-     * Get an account
-     * Returns the user or org account
-     * @param login The login of an account
+     * Authentify a local account
+     * Authentify a local account with the specified credential
+     * @param localAuthRequest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAccount(login: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Account>;
-    public getAccount(login: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Account>>;
-    public getAccount(login: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Account>>;
-    public getAccount(login: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (login === null || login === undefined) {
-            throw new Error('Required parameter login was null or undefined when calling getAccount.');
+    public authLocal(localAuthRequest: LocalAuthRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<LocalAuthResponse>;
+    public authLocal(localAuthRequest: LocalAuthRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<LocalAuthResponse>>;
+    public authLocal(localAuthRequest: LocalAuthRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<LocalAuthResponse>>;
+    public authLocal(localAuthRequest: LocalAuthRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (localAuthRequest === null || localAuthRequest === undefined) {
+            throw new Error('Required parameter localAuthRequest was null or undefined when calling authLocal.');
         }
 
         let headers = this.defaultHeaders;
-
-        let credential: string | undefined;
-        // authentication (BearerAuth) required
-        credential = this.configuration.lookupCredential('BearerAuth');
-        if (credential) {
-            headers = headers.set('Authorization', 'Bearer ' + credential);
-        }
 
         let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
         if (httpHeaderAcceptSelected === undefined) {
@@ -121,12 +115,22 @@ export class AccountService {
         }
 
 
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
         let responseType_: 'text' | 'json' = 'json';
         if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Account>(`${this.configuration.basePath}/accounts/${encodeURIComponent(String(login))}`,
+        return this.httpClient.post<LocalAuthResponse>(`${this.configuration.basePath}/auth/local`,
+            localAuthRequest,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,

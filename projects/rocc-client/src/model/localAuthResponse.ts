@@ -12,16 +12,9 @@
 
 
 /**
- * A date range
+ * The token returned after the authentication of a local account
  */
-export interface DateRange { 
-    /**
-     * Start date of the date range
-     */
-    start?: string;
-    /**
-     * End date of the date range
-     */
-    end?: string;
+export interface LocalAuthResponse { 
+    token: string;
 }
 
