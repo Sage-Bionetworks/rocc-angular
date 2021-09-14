@@ -97,13 +97,6 @@ export class HealthCheckService {
 
         let headers = this.defaultHeaders;
 
-        let credential: string | undefined;
-        // authentication (BearerAuth) required
-        credential = this.configuration.lookupCredential('BearerAuth');
-        if (credential) {
-            headers = headers.set('Authorization', 'Bearer ' + credential);
-        }
-
         let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
