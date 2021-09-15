@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:ci": "ng test --browsers=ChromeHeadlessCi --no-watch --code-coverage",
-    "generate:client": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i $npm_config_specification -c projects/rocc-client/config.yaml",
+    "generate:client": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -c projects/rocc-client/config.yaml -i $npm_config_specification",
     "generate:client:edge": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i https://sage-bionetworks.github.io/rocc-schemas/edge/openapi.json -c projects/rocc-client/config.yaml",
     "generate:client:latest": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i https://sage-bionetworks.github.io/rocc-schemas/latest/openapi.json -c projects/rocc-client/config.yaml",
     "generate:client:version": "openapi-generator-cli generate -g typescript-angular -o projects/rocc-client/src -i https://sage-bionetworks.github.io/rocc-schemas/${npm_config_schemas_version}/openapi.json -c projects/rocc-client/config.yaml",
