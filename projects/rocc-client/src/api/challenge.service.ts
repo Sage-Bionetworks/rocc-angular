@@ -1,5 +1,5 @@
 /**
- * Registry of Open Community Challenges API
+ * Registry of Open Community Challenge API
  * The OpenAPI specification implemented by the Challenge Registries. # Introduction TBA 
  *
  * The version of the OpenAPI document: 0.4.0
@@ -23,7 +23,6 @@ import { ChallengeCreateResponse } from '../model/models';
 import { ChallengeStatus } from '../model/models';
 import { DateRange } from '../model/models';
 import { PageOfChallenges } from '../model/models';
-import { PageOfUsers } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -283,69 +282,6 @@ export class ChallengeService {
 
         return this.httpClient.get<Challenge>(`${this.configuration.basePath}/challenges/${encodeURIComponent(String(accountName))}/${encodeURIComponent(String(challengeName))}`,
             {
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * List stargazers
-     * Lists the people that have starred the repository.
-     * @param accountName The name of the account that owns the challenge
-     * @param challengeName The name of the challenge
-     * @param limit Maximum number of results returned
-     * @param offset Index of the first result that must be returned
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public listChallengeStargazers(accountName: string, challengeName: string, limit?: number, offset?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<PageOfUsers>;
-    public listChallengeStargazers(accountName: string, challengeName: string, limit?: number, offset?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<PageOfUsers>>;
-    public listChallengeStargazers(accountName: string, challengeName: string, limit?: number, offset?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<PageOfUsers>>;
-    public listChallengeStargazers(accountName: string, challengeName: string, limit?: number, offset?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (accountName === null || accountName === undefined) {
-            throw new Error('Required parameter accountName was null or undefined when calling listChallengeStargazers.');
-        }
-        if (challengeName === null || challengeName === undefined) {
-            throw new Error('Required parameter challengeName was null or undefined when calling listChallengeStargazers.');
-        }
-
-        let queryParameters = new HttpParams({encoder: this.encoder});
-        if (limit !== undefined && limit !== null) {
-          queryParameters = this.addToHttpParams(queryParameters,
-            <any>limit, 'limit');
-        }
-        if (offset !== undefined && offset !== null) {
-          queryParameters = this.addToHttpParams(queryParameters,
-            <any>offset, 'offset');
-        }
-
-        let headers = this.defaultHeaders;
-
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
-        }
-
-        return this.httpClient.get<PageOfUsers>(`${this.configuration.basePath}/challenges/${encodeURIComponent(String(accountName))}/${encodeURIComponent(String(challengeName))}/stargazers`,
-            {
-                params: queryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

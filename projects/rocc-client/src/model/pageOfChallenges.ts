@@ -1,5 +1,5 @@
 /**
- * Registry of Open Community Challenges API
+ * Registry of Open Community Challenge API
  * The OpenAPI specification implemented by the Challenge Registries. # Introduction TBA 
  *
  * The version of the OpenAPI document: 0.4.0
@@ -31,7 +31,7 @@ export interface PageOfChallenges {
     /**
      * Total number of results in the result set
      */
-    totalResults: number;
+    totalResults?: number;
     /**
      * An array of Challenges
      */

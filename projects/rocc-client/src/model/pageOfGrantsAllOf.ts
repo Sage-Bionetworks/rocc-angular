@@ -1,5 +1,5 @@
 /**
- * Registry of Open Community Challenges API
+ * Registry of Open Community Challenge API
  * The OpenAPI specification implemented by the Challenge Registries. # Introduction TBA 
  *
  * The version of the OpenAPI document: 0.4.0

@@ -13,8 +13,6 @@ export * from './grant';
 export * from './grantCreateRequest';
 export * from './grantCreateResponse';
 export * from './healthCheck';
-export * from './localAuthRequest';
-export * from './localAuthResponse';
 export * from './error';
 export * from './orgMembership';
 export * from './orgMembershipCreateRequest';
