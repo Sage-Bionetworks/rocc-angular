@@ -28,6 +28,6 @@ export interface ResponsePageMetadata {
     /**
      * Total number of results in the result set
      */
-    totalResults?: number;
+    totalResults: number;
 }
 

@@ -31,7 +31,7 @@ export interface PageOfChallenges {
     /**
      * Total number of results in the result set
      */
-    totalResults?: number;
+    totalResults: number;
     /**
      * An array of Challenges
      */
