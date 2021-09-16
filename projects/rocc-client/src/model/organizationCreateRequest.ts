@@ -20,5 +20,8 @@ export interface OrganizationCreateRequest {
      * An email address
      */
     email: string;
+    name?: string | null;
+    avatarUrl?: string | null;
+    description?: string | null;
 }
 
