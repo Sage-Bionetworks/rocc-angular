@@ -29,6 +29,7 @@ export interface Organization {
     email: string;
     name?: string | null;
     avatarUrl?: string | null;
+    websiteUrl?: string | null;
     description?: string | null;
     createdAt: string;
     updatedAt: string;
