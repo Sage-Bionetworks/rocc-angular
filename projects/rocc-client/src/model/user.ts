@@ -31,5 +31,6 @@ export interface User {
     createdAt: string;
     updatedAt: string;
     type: string;
+    bio?: string | null;
 }
 

@@ -23,5 +23,6 @@ export interface UserCreateRequest {
     password: string;
     name?: string | null;
     avatarUrl?: string | null;
+    bio?: string | null;
 }
 
