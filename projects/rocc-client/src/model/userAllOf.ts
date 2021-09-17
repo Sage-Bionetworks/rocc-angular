@@ -22,5 +22,6 @@ export interface UserAllOf {
     createdAt: string;
     updatedAt: string;
     type: string;
+    bio?: string | null;
 }
 
