@@ -9,26 +9,20 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ChallengePlatformCreateResponse } from './challengePlatformCreateResponse';
 import { ChallengeReadmeAllOf } from './challengeReadmeAllOf';
-import { ChallengePlatformCreateRequest } from './challengePlatformCreateRequest';
+import { ChallengeReadmeCreateResponse } from './challengeReadmeCreateResponse';
+import { ChallengeReadmeCreateRequest } from './challengeReadmeCreateRequest';
 
 
 /**
- * A challenge platform
+ * A challenge README
  */
-export interface ChallengePlatform { 
+export interface ChallengeReadme { 
     /**
-     * The unique identifier of a challenge platform
+     * The unique identifier of a challenge README
      */
     id: string;
-    /**
-     * The name of the challenge platform
-     */
-    name: string;
-    displayName: string;
-    websiteUrl: string;
-    avatarUrl: string;
+    text: string;
     createdAt: string;
     updatedAt: string;
 }

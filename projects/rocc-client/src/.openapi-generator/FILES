@@ -23,9 +23,13 @@ model/challengeAllOf.ts
 model/challengeCreateRequest.ts
 model/challengeCreateResponse.ts
 model/challengePlatform.ts
-model/challengePlatformAllOf.ts
 model/challengePlatformCreateRequest.ts
 model/challengePlatformCreateResponse.ts
+model/challengeReadme.ts
+model/challengeReadmeAllOf.ts
+model/challengeReadmeCreateRequest.ts
+model/challengeReadmeCreateResponse.ts
+model/challengeReadmeUpdateRequest.ts
 model/challengeStatus.ts
 model/dateRange.ts
 model/error.ts

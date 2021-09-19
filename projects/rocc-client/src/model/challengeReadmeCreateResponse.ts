@@ -11,8 +11,13 @@
  */
 
 
-export interface ChallengePlatformAllOf { 
-    createdAt: string;
-    updatedAt: string;
+/**
+ * The unique identifier of the challenge README created
+ */
+export interface ChallengeReadmeCreateResponse { 
+    /**
+     * The unique identifier of a challenge README
+     */
+    id: string;
 }
 
