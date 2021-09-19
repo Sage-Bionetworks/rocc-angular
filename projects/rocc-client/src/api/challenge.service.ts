@@ -21,8 +21,7 @@ import { Challenge } from '../model/models';
 import { ChallengeCreateRequest } from '../model/models';
 import { ChallengeCreateResponse } from '../model/models';
 import { ChallengeReadme } from '../model/models';
-import { ChallengeReadmeCreateRequest } from '../model/models';
-import { ChallengeReadmeCreateResponse } from '../model/models';
+import { ChallengeReadmeUpdateRequest } from '../model/models';
 import { ChallengeStatus } from '../model/models';
 import { DateRange } from '../model/models';
 import { PageOfChallenges } from '../model/models';
@@ -154,70 +153,6 @@ export class ChallengeService {
     }
 
     /**
-     * Create a challenge README
-     * Create a challenge README
-     * @param accountName The name of the account that owns the challenge
-     * @param challengeName The name of the challenge
-     * @param challengeReadmeCreateRequest 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public createChallengeReadme(accountName: string, challengeName: string, challengeReadmeCreateRequest: ChallengeReadmeCreateRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<ChallengeReadmeCreateResponse>;
-    public createChallengeReadme(accountName: string, challengeName: string, challengeReadmeCreateRequest: ChallengeReadmeCreateRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<ChallengeReadmeCreateResponse>>;
-    public createChallengeReadme(accountName: string, challengeName: string, challengeReadmeCreateRequest: ChallengeReadmeCreateRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<ChallengeReadmeCreateResponse>>;
-    public createChallengeReadme(accountName: string, challengeName: string, challengeReadmeCreateRequest: ChallengeReadmeCreateRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (accountName === null || accountName === undefined) {
-            throw new Error('Required parameter accountName was null or undefined when calling createChallengeReadme.');
-        }
-        if (challengeName === null || challengeName === undefined) {
-            throw new Error('Required parameter challengeName was null or undefined when calling createChallengeReadme.');
-        }
-        if (challengeReadmeCreateRequest === null || challengeReadmeCreateRequest === undefined) {
-            throw new Error('Required parameter challengeReadmeCreateRequest was null or undefined when calling createChallengeReadme.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected !== undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
-
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
-        }
-
-        return this.httpClient.post<ChallengeReadmeCreateResponse>(`${this.configuration.basePath}/challenges/${encodeURIComponent(String(accountName))}/${encodeURIComponent(String(challengeName))}/readme`,
-            challengeReadmeCreateRequest,
-            {
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
      * Delete all challenges
      * Delete all challenges
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -299,56 +234,6 @@ export class ChallengeService {
         }
 
         return this.httpClient.delete<object>(`${this.configuration.basePath}/challenges/${encodeURIComponent(String(accountName))}/${encodeURIComponent(String(challengeName))}`,
-            {
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Delete a challenge README
-     * Deletes the challenge README specified
-     * @param accountName The name of the account that owns the challenge
-     * @param challengeName The name of the challenge
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public deleteChallengeReadme(accountName: string, challengeName: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<object>;
-    public deleteChallengeReadme(accountName: string, challengeName: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<object>>;
-    public deleteChallengeReadme(accountName: string, challengeName: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<object>>;
-    public deleteChallengeReadme(accountName: string, challengeName: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (accountName === null || accountName === undefined) {
-            throw new Error('Required parameter accountName was null or undefined when calling deleteChallengeReadme.');
-        }
-        if (challengeName === null || challengeName === undefined) {
-            throw new Error('Required parameter challengeName was null or undefined when calling deleteChallengeReadme.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-
-        let responseType_: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType_ = 'text';
-        }
-
-        return this.httpClient.delete<object>(`${this.configuration.basePath}/challenges/${encodeURIComponent(String(accountName))}/${encodeURIComponent(String(challengeName))}/readme`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -668,6 +553,70 @@ export class ChallengeService {
         return this.httpClient.get<PageOfChallenges>(`${this.configuration.basePath}/challenges`,
             {
                 params: queryParameters,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Update a challenge README
+     * Update a challenge README
+     * @param accountName The name of the account that owns the challenge
+     * @param challengeName The name of the challenge
+     * @param challengeReadmeUpdateRequest 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updateChallengeReadme(accountName: string, challengeName: string, challengeReadmeUpdateRequest: ChallengeReadmeUpdateRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<object>;
+    public updateChallengeReadme(accountName: string, challengeName: string, challengeReadmeUpdateRequest: ChallengeReadmeUpdateRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<object>>;
+    public updateChallengeReadme(accountName: string, challengeName: string, challengeReadmeUpdateRequest: ChallengeReadmeUpdateRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<object>>;
+    public updateChallengeReadme(accountName: string, challengeName: string, challengeReadmeUpdateRequest: ChallengeReadmeUpdateRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (accountName === null || accountName === undefined) {
+            throw new Error('Required parameter accountName was null or undefined when calling updateChallengeReadme.');
+        }
+        if (challengeName === null || challengeName === undefined) {
+            throw new Error('Required parameter challengeName was null or undefined when calling updateChallengeReadme.');
+        }
+        if (challengeReadmeUpdateRequest === null || challengeReadmeUpdateRequest === undefined) {
+            throw new Error('Required parameter challengeReadmeUpdateRequest was null or undefined when calling updateChallengeReadme.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (httpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' = 'json';
+        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
+            responseType_ = 'text';
+        }
+
+        return this.httpClient.patch<object>(`${this.configuration.basePath}/challenges/${encodeURIComponent(String(accountName))}/${encodeURIComponent(String(challengeName))}/readme`,
+            challengeReadmeUpdateRequest,
+            {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

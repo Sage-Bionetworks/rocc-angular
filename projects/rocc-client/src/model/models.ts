@@ -10,6 +10,7 @@ export * from './challengeReadme';
 export * from './challengeReadmeAllOf';
 export * from './challengeReadmeCreateRequest';
 export * from './challengeReadmeCreateResponse';
+export * from './challengeReadmeUpdateRequest';
 export * from './challengeStatus';
 export * from './dateRange';
 export * from './grant';

@@ -29,6 +29,7 @@ model/challengeReadme.ts
 model/challengeReadmeAllOf.ts
 model/challengeReadmeCreateRequest.ts
 model/challengeReadmeCreateResponse.ts
+model/challengeReadmeUpdateRequest.ts
 model/challengeStatus.ts
 model/dateRange.ts
 model/error.ts

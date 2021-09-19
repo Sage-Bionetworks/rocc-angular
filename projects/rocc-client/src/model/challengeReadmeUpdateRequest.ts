@@ -11,8 +11,10 @@
  */
 
 
-export interface ChallengePlatformAllOf { 
-    createdAt: string;
-    updatedAt: string;
+/**
+ * The new README content of a challenge
+ */
+export interface ChallengeReadmeUpdateRequest { 
+    text: string;
 }
 
