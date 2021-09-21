@@ -17,6 +17,7 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
+import { ArrayOfTopics } from '../model/models';
 import { Challenge } from '../model/models';
 import { ChallengeCreateRequest } from '../model/models';
 import { ChallengeCreateResponse } from '../model/models';
@@ -467,6 +468,56 @@ export class ChallengeService {
     }
 
     /**
+     * List stargazers
+     * Lists the challenge topics.
+     * @param accountName The name of the account that owns the challenge
+     * @param challengeName The name of the challenge
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public listChallengeTopics(accountName: string, challengeName: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<ArrayOfTopics>;
+    public listChallengeTopics(accountName: string, challengeName: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<ArrayOfTopics>>;
+    public listChallengeTopics(accountName: string, challengeName: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<ArrayOfTopics>>;
+    public listChallengeTopics(accountName: string, challengeName: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (accountName === null || accountName === undefined) {
+            throw new Error('Required parameter accountName was null or undefined when calling listChallengeTopics.');
+        }
+        if (challengeName === null || challengeName === undefined) {
+            throw new Error('Required parameter challengeName was null or undefined when calling listChallengeTopics.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (httpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+
+        let responseType_: 'text' | 'json' = 'json';
+        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
+            responseType_ = 'text';
+        }
+
+        return this.httpClient.get<ArrayOfTopics>(`${this.configuration.basePath}/challenges/${encodeURIComponent(String(accountName))}/${encodeURIComponent(String(challengeName))}/topics`,
+            {
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * List all the challenges
      * Returns all the challenges
      * @param limit Maximum number of results returned
@@ -474,17 +525,17 @@ export class ChallengeService {
      * @param sort Property used to sort the results that must be returned
      * @param direction Can be either &#x60;asc&#x60; or &#x60;desc&#x60;. Ignored without &#x60;sort&#x60; parameter.
      * @param searchTerms A string of search terms used to filter the results
-     * @param tagIds Array of tag ids used to filter the results
+     * @param topics Array of topics used to filter the results
      * @param status Array of challenge status used to filter the results
      * @param platformIds Array of challenge platform ids used to filter the results
      * @param startDateRange Return challenges that start during the date range specified
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listChallenges(limit?: number, offset?: number, sort?: 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, tagIds?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, startDateRange?: DateRange, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<PageOfChallenges>;
-    public listChallenges(limit?: number, offset?: number, sort?: 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, tagIds?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, startDateRange?: DateRange, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<PageOfChallenges>>;
-    public listChallenges(limit?: number, offset?: number, sort?: 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, tagIds?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, startDateRange?: DateRange, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<PageOfChallenges>>;
-    public listChallenges(limit?: number, offset?: number, sort?: 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, tagIds?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, startDateRange?: DateRange, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public listChallenges(limit?: number, offset?: number, sort?: 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, topics?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, startDateRange?: DateRange, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<PageOfChallenges>;
+    public listChallenges(limit?: number, offset?: number, sort?: 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, topics?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, startDateRange?: DateRange, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<PageOfChallenges>>;
+    public listChallenges(limit?: number, offset?: number, sort?: 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, topics?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, startDateRange?: DateRange, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<PageOfChallenges>>;
+    public listChallenges(limit?: number, offset?: number, sort?: 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, topics?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, startDateRange?: DateRange, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: this.encoder});
         if (limit !== undefined && limit !== null) {
@@ -507,10 +558,10 @@ export class ChallengeService {
           queryParameters = this.addToHttpParams(queryParameters,
             <any>searchTerms, 'searchTerms');
         }
-        if (tagIds) {
-            tagIds.forEach((element) => {
+        if (topics) {
+            topics.forEach((element) => {
                 queryParameters = this.addToHttpParams(queryParameters,
-                  <any>element, 'tagIds');
+                  <any>element, 'topics');
             })
         }
         if (status) {

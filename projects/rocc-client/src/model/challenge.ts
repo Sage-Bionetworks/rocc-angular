@@ -40,6 +40,7 @@ export interface Challenge {
      * The unique identifier of a challenge platform
      */
     platformId?: string;
+    topics?: Array<string>;
     doi?: string | null;
     fullName: string;
     /**
