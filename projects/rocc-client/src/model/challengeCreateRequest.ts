@@ -33,7 +33,7 @@ export interface ChallengeCreateRequest {
      * The unique identifier of a challenge platform
      */
     platformId?: string;
-    topics?: Set<string>;
+    topics?: Array<string>;
     doi?: string | null;
 }
 
