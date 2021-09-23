@@ -14,20 +14,18 @@ This client library is automatically updated using [openapi-generator] via a
 Pull Request opened shortly after a new release of the [ROCC schemas] is
 available.
 
-
 ## Specification
 
-- ROCC client library version: 0.6.0
-- ROCC schemas version: 0.4.0
-
+- ROCC client library version: 0.7.0
+- ROCC schemas version: 0.5.0
 
 ## Requirements
 
 - [Node] >=14
 
-
 ## Usage
 
+TBA
 
 ## Development
 
@@ -43,7 +41,6 @@ npm run build
 cd dist/rocc-client
 npm publish
 ```
-
 
 ## Versioning
 
@@ -63,12 +60,10 @@ package tags pushed to this registry.
 |-----------------------------|--------|------------
 | `<major>.<minor>.<patch>`   | No     | Stable release.
 
-
 ## Contributing
 
 Thinking about contributing to this project? Get started by reading our
 [contribution guidelines].
-
 
 ## License
 
