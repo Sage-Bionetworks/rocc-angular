@@ -111,6 +111,7 @@ release. Releases are created with the npm package [release-it].
 2. Manually update the package version in these files
    - [README.md]
    - [projects/rocc-client/package.json]
+   - `.rocc-version`
 3. Obtain a [personal access token] (release-it only needs "repo" access; no
    "admin" or other scopes).
 4. Make sure the token is [available as an environment variable].
