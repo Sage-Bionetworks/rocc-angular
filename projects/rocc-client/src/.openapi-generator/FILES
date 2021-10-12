@@ -10,7 +10,6 @@ api/grant.service.ts
 api/healthCheck.service.ts
 api/orgMembership.service.ts
 api/organization.service.ts
-api/person.service.ts
 api/tag.service.ts
 api/user.service.ts
 configuration.ts
@@ -23,6 +22,11 @@ model/challenge.ts
 model/challengeAllOf.ts
 model/challengeCreateRequest.ts
 model/challengeCreateResponse.ts
+model/challengeOrganizer.ts
+model/challengeOrganizerCreateRequest.ts
+model/challengeOrganizerCreateResponse.ts
+model/challengeOrganizerList.ts
+model/challengeOrganizerRole.ts
 model/challengePlatform.ts
 model/challengePlatformCreateRequest.ts
 model/challengePlatformCreateResponse.ts
@@ -58,15 +62,10 @@ model/pageOfOrgMemberships.ts
 model/pageOfOrgMembershipsAllOf.ts
 model/pageOfOrganizations.ts
 model/pageOfOrganizationsAllOf.ts
-model/pageOfPersons.ts
-model/pageOfPersonsAllOf.ts
 model/pageOfTags.ts
 model/pageOfTagsAllOf.ts
 model/pageOfUsers.ts
 model/pageOfUsersAllOf.ts
-model/person.ts
-model/personCreateRequest.ts
-model/personCreateResponse.ts
 model/responsePageMetadata.ts
 model/responsePageMetadataPaging.ts
 model/tag.ts

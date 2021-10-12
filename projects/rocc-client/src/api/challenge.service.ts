@@ -21,6 +21,9 @@ import { ArrayOfTopics } from '../model/models';
 import { Challenge } from '../model/models';
 import { ChallengeCreateRequest } from '../model/models';
 import { ChallengeCreateResponse } from '../model/models';
+import { ChallengeOrganizerCreateRequest } from '../model/models';
+import { ChallengeOrganizerCreateResponse } from '../model/models';
+import { ChallengeOrganizerList } from '../model/models';
 import { ChallengeReadme } from '../model/models';
 import { ChallengeReadmeUpdateRequest } from '../model/models';
 import { ChallengeStatus } from '../model/models';
@@ -154,6 +157,70 @@ export class ChallengeService {
     }
 
     /**
+     * Create a challenge organizer
+     * Create a challenge organizer
+     * @param accountName The name of the account that owns the challenge
+     * @param challengeName The name of the challenge
+     * @param challengeOrganizerCreateRequest 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public createChallengeOrganizer(accountName: string, challengeName: string, challengeOrganizerCreateRequest: ChallengeOrganizerCreateRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<ChallengeOrganizerCreateResponse>;
+    public createChallengeOrganizer(accountName: string, challengeName: string, challengeOrganizerCreateRequest: ChallengeOrganizerCreateRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<ChallengeOrganizerCreateResponse>>;
+    public createChallengeOrganizer(accountName: string, challengeName: string, challengeOrganizerCreateRequest: ChallengeOrganizerCreateRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<ChallengeOrganizerCreateResponse>>;
+    public createChallengeOrganizer(accountName: string, challengeName: string, challengeOrganizerCreateRequest: ChallengeOrganizerCreateRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (accountName === null || accountName === undefined) {
+            throw new Error('Required parameter accountName was null or undefined when calling createChallengeOrganizer.');
+        }
+        if (challengeName === null || challengeName === undefined) {
+            throw new Error('Required parameter challengeName was null or undefined when calling createChallengeOrganizer.');
+        }
+        if (challengeOrganizerCreateRequest === null || challengeOrganizerCreateRequest === undefined) {
+            throw new Error('Required parameter challengeOrganizerCreateRequest was null or undefined when calling createChallengeOrganizer.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (httpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' = 'json';
+        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
+            responseType_ = 'text';
+        }
+
+        return this.httpClient.post<ChallengeOrganizerCreateResponse>(`${this.configuration.basePath}/challenges/${encodeURIComponent(String(accountName))}/${encodeURIComponent(String(challengeName))}/organizers`,
+            challengeOrganizerCreateRequest,
+            {
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Delete all challenges
      * Delete all challenges
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -235,6 +302,60 @@ export class ChallengeService {
         }
 
         return this.httpClient.delete<object>(`${this.configuration.basePath}/challenges/${encodeURIComponent(String(accountName))}/${encodeURIComponent(String(challengeName))}`,
+            {
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Delete a challenge organizer
+     * Deletes the challenge organizer specified
+     * @param accountName The name of the account that owns the challenge
+     * @param challengeName The name of the challenge
+     * @param organizerId The identifier of the challenge organizer
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public deleteChallengeOrganizer(accountName: string, challengeName: string, organizerId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<object>;
+    public deleteChallengeOrganizer(accountName: string, challengeName: string, organizerId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<object>>;
+    public deleteChallengeOrganizer(accountName: string, challengeName: string, organizerId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<object>>;
+    public deleteChallengeOrganizer(accountName: string, challengeName: string, organizerId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (accountName === null || accountName === undefined) {
+            throw new Error('Required parameter accountName was null or undefined when calling deleteChallengeOrganizer.');
+        }
+        if (challengeName === null || challengeName === undefined) {
+            throw new Error('Required parameter challengeName was null or undefined when calling deleteChallengeOrganizer.');
+        }
+        if (organizerId === null || organizerId === undefined) {
+            throw new Error('Required parameter organizerId was null or undefined when calling deleteChallengeOrganizer.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (httpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+
+        let responseType_: 'text' | 'json' = 'json';
+        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
+            responseType_ = 'text';
+        }
+
+        return this.httpClient.delete<object>(`${this.configuration.basePath}/challenges/${encodeURIComponent(String(accountName))}/${encodeURIComponent(String(challengeName))}/organizers/${encodeURIComponent(String(organizerId))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -405,8 +526,58 @@ export class ChallengeService {
     }
 
     /**
+     * List organizers
+     * Lists the organizers of the challenge.
+     * @param accountName The name of the account that owns the challenge
+     * @param challengeName The name of the challenge
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public listChallengeOrganizers(accountName: string, challengeName: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<ChallengeOrganizerList>;
+    public listChallengeOrganizers(accountName: string, challengeName: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<ChallengeOrganizerList>>;
+    public listChallengeOrganizers(accountName: string, challengeName: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<ChallengeOrganizerList>>;
+    public listChallengeOrganizers(accountName: string, challengeName: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (accountName === null || accountName === undefined) {
+            throw new Error('Required parameter accountName was null or undefined when calling listChallengeOrganizers.');
+        }
+        if (challengeName === null || challengeName === undefined) {
+            throw new Error('Required parameter challengeName was null or undefined when calling listChallengeOrganizers.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (httpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+
+        let responseType_: 'text' | 'json' = 'json';
+        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
+            responseType_ = 'text';
+        }
+
+        return this.httpClient.get<ChallengeOrganizerList>(`${this.configuration.basePath}/challenges/${encodeURIComponent(String(accountName))}/${encodeURIComponent(String(challengeName))}/organizers`,
+            {
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * List stargazers
-     * Lists the people that have starred the repository.
+     * Lists the people that have starred the challenge.
      * @param accountName The name of the account that owns the challenge
      * @param challengeName The name of the challenge
      * @param limit Maximum number of results returned
