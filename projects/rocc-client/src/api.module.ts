@@ -10,7 +10,6 @@ import { GrantService } from './api/grant.service';
 import { HealthCheckService } from './api/healthCheck.service';
 import { OrgMembershipService } from './api/orgMembership.service';
 import { OrganizationService } from './api/organization.service';
-import { TagService } from './api/tag.service';
 import { UserService } from './api/user.service';
 
 @NgModule({

@@ -9,15 +9,18 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ChallengeSponsorRole } from './challengeSponsorRole';
 
 
 /**
- * The unique identifier of the tag created
+ * The information used to create a challenge sponsor
  */
-export interface TagCreateResponse { 
+export interface ChallengeSponsorCreateRequest { 
+    name: string;
     /**
-     * The unique identifier of a tag
+     * The user or organization account name
      */
-    id: string;
+    login?: string;
+    roles?: Array<ChallengeSponsorRole>;
 }
 
