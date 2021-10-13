@@ -9,15 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { Person } from './person';
 
 
-/**
- * The role of the challenge organizer
- */
-export type ChallengeOrganizerRole = 'ChallengeLead' | 'InfrastructureLead';
-
-export const ChallengeOrganizerRole = {
-    ChallengeLead: 'ChallengeLead' as ChallengeOrganizerRole,
-    InfrastructureLead: 'InfrastructureLead' as ChallengeOrganizerRole
-};
+export interface PageOfPersonsAllOf { 
+    /**
+     * An array of Persons
+     */
+    persons: Array<Person>;
+}
 

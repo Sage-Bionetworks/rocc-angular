@@ -9,16 +9,17 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ChallengeOrganizer } from './challengeOrganizer';
 
 
 /**
- * A list of challenge organizers
+ * The information used to create a person
  */
-export interface ChallengeOrganizerList { 
+export interface PersonCreateRequest { 
+    name: string;
     /**
-     * A list of ChallengeOrganizers
+     * An email address
      */
-    challengeOrganizers: Array<ChallengeOrganizer>;
+    email?: string;
+    organizationIds: Array<string>;
 }
 

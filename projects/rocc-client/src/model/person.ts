@@ -9,24 +9,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ChallengeOrganizerRole } from './challengeOrganizerRole';
-import { ChallengeOrganizerCreateRequest } from './challengeOrganizerCreateRequest';
-import { ChallengeOrganizerCreateResponse } from './challengeOrganizerCreateResponse';
+import { PersonCreateResponse } from './personCreateResponse';
+import { PersonCreateRequest } from './personCreateRequest';
 
 
 /**
- * A challenge organizer
+ * A person
  */
-export interface ChallengeOrganizer { 
+export interface Person { 
     /**
-     * The unique identifier of a challenge organizer
+     * The unique identifier of a person
      */
     id: string;
     name: string;
     /**
-     * The user or organization account name
+     * An email address
      */
-    login?: string;
-    roles?: Array<ChallengeOrganizerRole>;
+    email?: string;
+    organizationIds: Array<string>;
 }
 
