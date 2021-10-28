@@ -14,11 +14,11 @@
 /**
  * The role of a challenge sponsor
  */
-export type ChallengeSponsorRole = 'ChallengeOrganizer' | 'CloudProvider' | 'DataProvider' | 'Funder' | 'Other';
+export type ChallengeSponsorRole = 'ChallengeOrganizer' | 'ComputeProvider' | 'DataProvider' | 'Funder' | 'Other';
 
 export const ChallengeSponsorRole = {
     ChallengeOrganizer: 'ChallengeOrganizer' as ChallengeSponsorRole,
-    CloudProvider: 'CloudProvider' as ChallengeSponsorRole,
+    ComputeProvider: 'ComputeProvider' as ChallengeSponsorRole,
     DataProvider: 'DataProvider' as ChallengeSponsorRole,
     Funder: 'Funder' as ChallengeSponsorRole,
     Other: 'Other' as ChallengeSponsorRole
