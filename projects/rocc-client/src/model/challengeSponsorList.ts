@@ -9,21 +9,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TagCreateResponse } from './tagCreateResponse';
-import { TagCreateRequest } from './tagCreateRequest';
+import { ChallengeSponsor } from './challengeSponsor';
 
 
 /**
- * A tag that can be assigned to a resource
+ * A list of challenge sponsors
  */
-export interface Tag { 
+export interface ChallengeSponsorList { 
     /**
-     * The unique identifier of a tag
+     * A list of ChallengeSponsors
      */
-    id: string;
-    /**
-     * The name of a tag
-     */
-    name: string;
+    challengeSponsors: Array<ChallengeSponsor>;
 }
 

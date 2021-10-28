@@ -12,12 +12,12 @@
 
 
 /**
- * The information required to create a tag
+ * The unique identifier of a challenge sponsor
  */
-export interface TagCreateRequest { 
+export interface ChallengeSponsorCreateResponse { 
     /**
-     * The name of a tag
+     * The unique identifier of a challenge sponsor
      */
-    name: string;
+    id: string;
 }
 
