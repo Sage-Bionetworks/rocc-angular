@@ -593,13 +593,14 @@ export class ChallengeService {
      * @param accountName The name of the account that owns the challenge
      * @param limit Maximum number of results returned
      * @param offset Index of the first result that must be returned
+     * @param searchTerms A string of search terms used to filter the results
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listAccountChallenges(accountName: string, limit?: number, offset?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<PageOfChallenges>;
-    public listAccountChallenges(accountName: string, limit?: number, offset?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<PageOfChallenges>>;
-    public listAccountChallenges(accountName: string, limit?: number, offset?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<PageOfChallenges>>;
-    public listAccountChallenges(accountName: string, limit?: number, offset?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public listAccountChallenges(accountName: string, limit?: number, offset?: number, searchTerms?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<PageOfChallenges>;
+    public listAccountChallenges(accountName: string, limit?: number, offset?: number, searchTerms?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<PageOfChallenges>>;
+    public listAccountChallenges(accountName: string, limit?: number, offset?: number, searchTerms?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<PageOfChallenges>>;
+    public listAccountChallenges(accountName: string, limit?: number, offset?: number, searchTerms?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
         if (accountName === null || accountName === undefined) {
             throw new Error('Required parameter accountName was null or undefined when calling listAccountChallenges.');
         }
@@ -612,6 +613,10 @@ export class ChallengeService {
         if (offset !== undefined && offset !== null) {
           queryParameters = this.addToHttpParams(queryParameters,
             <any>offset, 'offset');
+        }
+        if (searchTerms !== undefined && searchTerms !== null) {
+          queryParameters = this.addToHttpParams(queryParameters,
+            <any>searchTerms, 'searchTerms');
         }
 
         let headers = this.defaultHeaders;
