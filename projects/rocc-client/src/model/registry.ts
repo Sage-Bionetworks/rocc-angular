@@ -11,17 +11,14 @@
  */
 
 
-export interface ChallengeAllOf { 
-    fullName: string;
-    /**
-     * The unique identifier of an account
-     */
-    ownerId: string;
-    /**
-     * The unique identifier of a challenge README
-     */
-    readmeId: string;
-    createdAt: string;
-    updatedAt: string;
+/**
+ * The Challenge Registry
+ */
+export interface Registry { 
+    name: string;
+    description: string;
+    userCount: number;
+    orgCount: number;
+    challengeCount: number;
 }
 

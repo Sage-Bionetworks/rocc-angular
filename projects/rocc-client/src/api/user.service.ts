@@ -158,6 +158,13 @@ export class UserService {
 
         let headers = this.defaultHeaders;
 
+        let credential: string | undefined;
+        // authentication (ApiKeyAuth) required
+        credential = this.configuration.lookupCredential('ApiKeyAuth');
+        if (credential) {
+            headers = headers.set('X-API-Key', credential);
+        }
+
         let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
@@ -203,6 +210,13 @@ export class UserService {
         }
 
         let headers = this.defaultHeaders;
+
+        let credential: string | undefined;
+        // authentication (ApiKeyAuth) required
+        credential = this.configuration.lookupCredential('ApiKeyAuth');
+        if (credential) {
+            headers = headers.set('X-API-Key', credential);
+        }
 
         let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
         if (httpHeaderAcceptSelected === undefined) {
