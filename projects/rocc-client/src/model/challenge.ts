@@ -47,6 +47,10 @@ export interface Challenge {
      * The unique identifier of an account
      */
     ownerId: string;
+    /**
+     * The unique identifier of a challenge README
+     */
+    readmeId: string;
     createdAt: string;
     updatedAt: string;
 }

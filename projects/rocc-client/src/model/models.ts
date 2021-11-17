@@ -50,6 +50,7 @@ export * from './pageOfOrganizations';
 export * from './pageOfOrganizationsAllOf';
 export * from './pageOfUsers';
 export * from './pageOfUsersAllOf';
+export * from './registry';
 export * from './responsePageMetadata';
 export * from './responsePageMetadataPaging';
 export * from './user';
