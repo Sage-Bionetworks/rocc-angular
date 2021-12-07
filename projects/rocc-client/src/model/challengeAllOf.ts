@@ -21,6 +21,22 @@ export interface ChallengeAllOf {
      * The unique identifier of a challenge README
      */
     readmeId: string;
+    /**
+     * Whether the challenge is featured
+     */
+    featured?: boolean;
+    /**
+     * Number of challenge participants
+     */
+    participantCount?: number;
+    /**
+     * Number of challenge views
+     */
+    viewCount?: number;
+    /**
+     * Number of times the challenge has been starred by users
+     */
+    starredCount?: number;
     createdAt: string;
     updatedAt: string;
 }

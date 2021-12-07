@@ -9,7 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ChallengeIncentiveType } from './challengeIncentiveType';
+import { ChallengeDifficulty } from './challengeDifficulty';
 import { ChallengeStatus } from './challengeStatus';
+import { ChallengeSubmissionType } from './challengeSubmissionType';
 
 
 /**
@@ -29,11 +32,16 @@ export interface ChallengeCreateRequest {
     status?: ChallengeStatus;
     startDate?: string | null;
     endDate?: string | null;
+    incentiveTypes?: Array<ChallengeIncentiveType> | null;
     /**
      * The unique identifier of a challenge platform
      */
     platformId?: string;
+    difficulty?: ChallengeDifficulty;
+    submissionTypes?: Array<ChallengeSubmissionType> | null;
     topics?: Array<string>;
+    inputDataTypes?: Array<string> | null;
     doi?: string | null;
+    participantCount?: number | null;
 }
 

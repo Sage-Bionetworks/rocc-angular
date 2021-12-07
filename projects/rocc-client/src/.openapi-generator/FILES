@@ -22,6 +22,8 @@ model/challenge.ts
 model/challengeAllOf.ts
 model/challengeCreateRequest.ts
 model/challengeCreateResponse.ts
+model/challengeDifficulty.ts
+model/challengeIncentiveType.ts
 model/challengeOrganizer.ts
 model/challengeOrganizerCreateRequest.ts
 model/challengeOrganizerCreateResponse.ts
@@ -41,6 +43,7 @@ model/challengeSponsorCreateResponse.ts
 model/challengeSponsorList.ts
 model/challengeSponsorRole.ts
 model/challengeStatus.ts
+model/challengeSubmissionType.ts
 model/dateRange.ts
 model/error.ts
 model/grant.ts

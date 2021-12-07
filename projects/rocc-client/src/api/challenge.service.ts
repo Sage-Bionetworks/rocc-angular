@@ -21,6 +21,8 @@ import { ArrayOfTopics } from '../model/models';
 import { Challenge } from '../model/models';
 import { ChallengeCreateRequest } from '../model/models';
 import { ChallengeCreateResponse } from '../model/models';
+import { ChallengeDifficulty } from '../model/models';
+import { ChallengeIncentiveType } from '../model/models';
 import { ChallengeOrganizerCreateRequest } from '../model/models';
 import { ChallengeOrganizerCreateResponse } from '../model/models';
 import { ChallengeOrganizerList } from '../model/models';
@@ -30,6 +32,7 @@ import { ChallengeSponsorCreateRequest } from '../model/models';
 import { ChallengeSponsorCreateResponse } from '../model/models';
 import { ChallengeSponsorList } from '../model/models';
 import { ChallengeStatus } from '../model/models';
+import { ChallengeSubmissionType } from '../model/models';
 import { DateRange } from '../model/models';
 import { PageOfChallenges } from '../model/models';
 import { PageOfUsers } from '../model/models';
@@ -918,20 +921,27 @@ export class ChallengeService {
      * Returns all the challenges
      * @param limit Maximum number of results returned
      * @param offset Index of the first result that must be returned
-     * @param sort Property used to sort the results that must be returned
+     * @param sort Properties used to sort the results that must be returned:   * featured - featured challenge, from featured to non-featured.   * startDate - start date of a challenge, from latest to oldest.   * participantCount - number of participants of a challenge, from most to least.   * viewCount - number of views of a challenge, from most to least.   * starredCount - number of stargazers of a challenge, from most to least.   * name - name of a challenge, from A to Z.   * createdAt - when a challenge is created, from latest to oldest.   * updatedAt - when a challenge is updated, from latest to oldest. 
      * @param direction Can be either &#x60;asc&#x60; or &#x60;desc&#x60;. Ignored without &#x60;sort&#x60; parameter.
      * @param searchTerms A string of search terms used to filter the results
      * @param topics Array of topics used to filter the results
+     * @param inputDataTypes Array of input data types used to filter the results
      * @param status Array of challenge status used to filter the results
      * @param platformIds Array of challenge platform ids used to filter the results
+     * @param difficulty Array of challenge difficulty levels used to filter the results
+     * @param submissionTypes Array of challenge submission types used to filter the results
+     * @param incentiveTypes Array of challenge incentive types used to filter the results
      * @param startDateRange Return challenges that start during the date range specified
+     * @param orgIds Array of organization ids used to filter the results
+     * @param organizerIds Array of organizer identifiers used to filter the results
+     * @param sponsorIds Array of sponsor org identifiers used to filter the results
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listChallenges(limit?: number, offset?: number, sort?: 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, topics?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, startDateRange?: DateRange, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<PageOfChallenges>;
-    public listChallenges(limit?: number, offset?: number, sort?: 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, topics?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, startDateRange?: DateRange, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<PageOfChallenges>>;
-    public listChallenges(limit?: number, offset?: number, sort?: 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, topics?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, startDateRange?: DateRange, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<PageOfChallenges>>;
-    public listChallenges(limit?: number, offset?: number, sort?: 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, topics?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, startDateRange?: DateRange, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public listChallenges(limit?: number, offset?: number, sort?: 'featured' | 'startDate' | 'participantCount' | 'viewCount' | 'starredCount' | 'name' | 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, topics?: Array<string>, inputDataTypes?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, difficulty?: Array<ChallengeDifficulty>, submissionTypes?: Array<ChallengeSubmissionType>, incentiveTypes?: Array<ChallengeIncentiveType>, startDateRange?: DateRange, orgIds?: Array<string>, organizerIds?: Array<string>, sponsorIds?: Array<string>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<PageOfChallenges>;
+    public listChallenges(limit?: number, offset?: number, sort?: 'featured' | 'startDate' | 'participantCount' | 'viewCount' | 'starredCount' | 'name' | 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, topics?: Array<string>, inputDataTypes?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, difficulty?: Array<ChallengeDifficulty>, submissionTypes?: Array<ChallengeSubmissionType>, incentiveTypes?: Array<ChallengeIncentiveType>, startDateRange?: DateRange, orgIds?: Array<string>, organizerIds?: Array<string>, sponsorIds?: Array<string>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<PageOfChallenges>>;
+    public listChallenges(limit?: number, offset?: number, sort?: 'featured' | 'startDate' | 'participantCount' | 'viewCount' | 'starredCount' | 'name' | 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, topics?: Array<string>, inputDataTypes?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, difficulty?: Array<ChallengeDifficulty>, submissionTypes?: Array<ChallengeSubmissionType>, incentiveTypes?: Array<ChallengeIncentiveType>, startDateRange?: DateRange, orgIds?: Array<string>, organizerIds?: Array<string>, sponsorIds?: Array<string>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<PageOfChallenges>>;
+    public listChallenges(limit?: number, offset?: number, sort?: 'featured' | 'startDate' | 'participantCount' | 'viewCount' | 'starredCount' | 'name' | 'createdAt' | 'updatedAt', direction?: 'asc' | 'desc', searchTerms?: string, topics?: Array<string>, inputDataTypes?: Array<string>, status?: Array<ChallengeStatus>, platformIds?: Array<string>, difficulty?: Array<ChallengeDifficulty>, submissionTypes?: Array<ChallengeSubmissionType>, incentiveTypes?: Array<ChallengeIncentiveType>, startDateRange?: DateRange, orgIds?: Array<string>, organizerIds?: Array<string>, sponsorIds?: Array<string>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: this.encoder});
         if (limit !== undefined && limit !== null) {
@@ -960,6 +970,12 @@ export class ChallengeService {
                   <any>element, 'topics');
             })
         }
+        if (inputDataTypes) {
+            inputDataTypes.forEach((element) => {
+                queryParameters = this.addToHttpParams(queryParameters,
+                  <any>element, 'inputDataTypes');
+            })
+        }
         if (status) {
             status.forEach((element) => {
                 queryParameters = this.addToHttpParams(queryParameters,
@@ -972,9 +988,45 @@ export class ChallengeService {
                   <any>element, 'platformIds');
             })
         }
+        if (difficulty) {
+            difficulty.forEach((element) => {
+                queryParameters = this.addToHttpParams(queryParameters,
+                  <any>element, 'difficulty');
+            })
+        }
+        if (submissionTypes) {
+            submissionTypes.forEach((element) => {
+                queryParameters = this.addToHttpParams(queryParameters,
+                  <any>element, 'submissionTypes');
+            })
+        }
+        if (incentiveTypes) {
+            incentiveTypes.forEach((element) => {
+                queryParameters = this.addToHttpParams(queryParameters,
+                  <any>element, 'incentiveTypes');
+            })
+        }
         if (startDateRange !== undefined && startDateRange !== null) {
           queryParameters = this.addToHttpParams(queryParameters,
             <any>startDateRange, 'startDateRange');
+        }
+        if (orgIds) {
+            orgIds.forEach((element) => {
+                queryParameters = this.addToHttpParams(queryParameters,
+                  <any>element, 'orgIds');
+            })
+        }
+        if (organizerIds) {
+            organizerIds.forEach((element) => {
+                queryParameters = this.addToHttpParams(queryParameters,
+                  <any>element, 'organizerIds');
+            })
+        }
+        if (sponsorIds) {
+            sponsorIds.forEach((element) => {
+                queryParameters = this.addToHttpParams(queryParameters,
+                  <any>element, 'sponsorIds');
+            })
         }
 
         let headers = this.defaultHeaders;
