@@ -12,7 +12,10 @@
 import { ChallengeCreateRequest } from './challengeCreateRequest';
 import { ChallengeCreateResponse } from './challengeCreateResponse';
 import { ChallengeAllOf } from './challengeAllOf';
+import { ChallengeIncentiveType } from './challengeIncentiveType';
+import { ChallengeDifficulty } from './challengeDifficulty';
 import { ChallengeStatus } from './challengeStatus';
+import { ChallengeSubmissionType } from './challengeSubmissionType';
 
 
 /**
@@ -36,12 +39,20 @@ export interface Challenge {
     status?: ChallengeStatus;
     startDate?: string | null;
     endDate?: string | null;
+    incentiveTypes?: Array<ChallengeIncentiveType> | null;
     /**
      * The unique identifier of a challenge platform
      */
     platformId?: string;
+    difficulty?: ChallengeDifficulty;
+    submissionTypes?: Array<ChallengeSubmissionType> | null;
     topics?: Array<string>;
+    inputDataTypes?: Array<string> | null;
     doi?: string | null;
+    /**
+     * Number of challenge participants
+     */
+    participantCount?: number;
     fullName: string;
     /**
      * The unique identifier of an account
@@ -51,6 +62,18 @@ export interface Challenge {
      * The unique identifier of a challenge README
      */
     readmeId: string;
+    /**
+     * Whether the challenge is featured
+     */
+    featured?: boolean;
+    /**
+     * Number of challenge views
+     */
+    viewCount?: number;
+    /**
+     * Number of times the challenge has been starred by users
+     */
+    starredCount?: number;
     createdAt: string;
     updatedAt: string;
 }
