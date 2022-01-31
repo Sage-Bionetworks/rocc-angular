@@ -48,7 +48,7 @@ jobs:
           mkdir projects/rocc-client/src
 
           # Remove server folder so that everything is recreated
-          npm run generate:client:version --schemas_version=${new_version}
+          npm run generate:version --schemas_version=${new_version}
 
           # Restore test.ts
           cp projects/.rocc-client/src/test.ts projects/rocc-client/src/.
